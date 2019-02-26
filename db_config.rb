@@ -2,7 +2,7 @@
 # local environment
 options = {
   adapter: 'postgresql',
-  database: 'blackJack_PDR'
+  database: 'blackjack_pdr'
 }
 
 ActiveRecord::Base.establish_connection( ENV['DATABASE_URL'] || options)
