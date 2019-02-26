@@ -6,7 +6,6 @@ require 'pg'
 require_relative 'db_config'
 require_relative 'models/user'
 
-
 get '/' do
   erb :index
 end
@@ -16,6 +15,9 @@ get '/login' do
   erb :login
 end
 
+get '/register' do
+  erb :register
+end
 
 post '/session' do
   user = if params[:role] == "user"
@@ -41,9 +43,6 @@ get '/session' do
 end
 
 
-get '/register' do
-  erb :register
-end
 
 get '/about' do
   erb :about
