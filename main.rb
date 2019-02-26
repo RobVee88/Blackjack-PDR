@@ -91,7 +91,17 @@ get '/leaderboard' do
 end
 
 get '/game' do
-
+  redirect '/login' unless logged_in?
   erb :game
 end
 
+get '/users' do
+  @user = User.find(params[:user_id])
+  erb :leaderboard
+end
+
+get '/api/users' do
+  users = User.all
+  content_type 'application/json'
+  users.to_json
+end
