@@ -2,25 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>Blackjack PDR</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/reset.css'>
     <link rel='stylesheet' href='/stylesheets/main.css'>
   </head>
   <body>
-    <h4><a href="/game">Play Now</a></h4>
-    <h4><a href="/login">LogIn</a></h4>
-    <h4><a href="/about">About</a>
-      <h4><a href="/howtoplay">How to Play</a></h4>
-      <h4><a href="/leaderboard">LeaderBoard</a></h4>
-      <div>
-        <% if current_user.nil? %>
-          <h4><a href="/register">SignIn</a></h4>
-        <% else %>
-          <a>
-            <%= current_user.email %>
-          </a>
-          <h4><a href="/session" method="delete">Logout</a></h4>
-        <% end %>
-      </div>
+    <div class='wrapper'>
+      <header class="nav-container">
+        <img class="logo-nav" src="/img/logo.svg" alt="Blackjack-PDR-logo" href="/">
+        <nav>
+          <a href="/about">About</a>
+          <a href="/howtoplay">How to Play</a>
+          <a href="/game">Play Now</a>
+          <a href="/login">LogIn</a>
+            <div>
+              <% if current_user.nil? %>
+                <a href="/register">SignIn</a>
+              <% else %>
+                <a>
+                  <%= current_user.email %>
+                </a>
+                <a href="/session" method="delete">Logout</a>
+              <% end %>
+            </div>
+        </nav>
+      </header>
       <%= yield %>
-    </body>
-  </html>
+    </div>
+  </body>
+</html>
