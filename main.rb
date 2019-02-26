@@ -33,7 +33,7 @@ end
 
 post '/register' do
 user = User.new
-user.username = params[:username]
+user.name = params[:name]
 user.email = params[:email]
 user.password = params[:password]
 user.save
@@ -51,18 +51,18 @@ post '/session' do
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
 
-    redirect '/'
+    redirect '/game'
   else
     erb :login
   end
 end
 
-get '/session' do
+delete '/session' do
   session[:user_id] = nil
   redirect '/login'
 end
 
-delete '/session' do
+get '/session' do
   session[:user_id] = nil
   redirect '/login'
 end

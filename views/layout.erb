@@ -1,13 +1,26 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Hello World</title>
-  <link rel='stylesheet' href='/stylesheets/main.css'>
-</head>
-<body>
-
-  <%= yield %>
-
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <link rel='stylesheet' href='/stylesheets/main.css'>
+  </head>
+  <body>
+    <h4><a href="/game">Play Now</a></h4>
+    <h4><a href="/login">LogIn</a></h4>
+    <%# <h4><a href="/register">SignUp</a></h4> %>
+    <h4><a href="/about">About</a>
+      <h4><a href="/howtoplay">How to Play</a></h4>
+      <div>
+        <% if current_user.nil? %>
+          <h4><a href="/register">SignIn</a></h4>
+        <% else %>
+          <a>
+            <%= current_user.email %>
+          </a>
+          <h4><a href="/session" method="delete">Logout</a></h4>
+        <% end %>
+      </div>
+      <%= yield %>
+    </body>
+  </html>
