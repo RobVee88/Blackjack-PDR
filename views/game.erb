@@ -1,26 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div class='wrapper'>
-        <main class='game-board'>
+<main class='game-board'>
+    <section class="dealer">
+        <div class="dealer-cards">
+            <div class="dealer-card-1">
 
+            </div>
+        </div>
+    
+    </section>
+    
+    <section class="game-info">
+        <button class="btn deal">deal</button>
+        <p>player wins</p>
+        <p>push</p>
+        <p>dealer wins</p>
+    </section>
 
+    <section class="player">
+        <div class="player-cards">
+            <div class="player-card-1">
+                    
+            </div>
+        </div>
+
+    </section>
+
+    <section class="game-nav">
+        <div class="player-info">
+            <div class="player-name">
+                <p><%= current_user.name %></p>
+            </div>
+
+            <div class="player-funds">
+                <p>$0000</p>
+            </div>
+
+            <div class="player-score">
+                <p>0000</p>
+            </div>
+        </div>
+
+        <div class="btn-game">
+            <button class="btn double">double</button>
+            <button class="btn split">split</button>
+            <button class="btn deal">hit</button>
+            <button class="btn stand">stand</button>
+        </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-        </main>
-    </div>
-</body>
-</html>
+    </section>
+</main>
+
