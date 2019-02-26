@@ -1,4 +1,4 @@
-CREATE DATABASE blackJack_PDR;
+CREATE DATABASE blackjack_pdr;
 
 CREATE TABLE users
 (
