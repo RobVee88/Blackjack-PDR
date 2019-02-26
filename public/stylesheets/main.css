@@ -14,7 +14,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
     background-color: rgb(181, 250, 228);
 }
 
@@ -75,7 +75,7 @@ a {
 }
 
 .logo {
-    max-width: 50%;
+    /* max-width: 50%; */
     margin: 0 auto;
     align-content: flex-start;
     padding: 2rem 0 2rem 0;
@@ -90,4 +90,11 @@ a {
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: #FFF;
+}
+
+
+/*** GAME ***/
+
+.dealer-card-1 {
+    max-width: 10%;
 }
