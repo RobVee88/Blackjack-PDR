@@ -6,45 +6,76 @@ require 'pg'
 require_relative 'db_config'
 require_relative 'models/user'
 
-get '/' do
-  erb :index
+# to enable random string - when the user loginIn
+enable :sessions # sinatra dealing with storing the session for you
+
+ ### HELPERS METHODS ###
+ helpers do
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    if current_user
+      return true
+    else
+      return false
+    end
+  end
 end
 
-get '/login' do
-  # redirect '/' if current_user
-  erb :login
-end
 
+## USERS ##
 get '/register' do
+
   erb :register
 end
 
-post '/session' do
-  user = if params[:role] == "user"
-    User.find_by(email: params[:email])
-  end
+post '/register' do
+user = User.new
+user.name = params[:name]
+user.email = params[:email]
+user.password = params[:password]
+user.save
+redirect '/login'
+end
 
-  # check email first
+get '/login' do
+  redirect '/' if current_user
+  erb :login
+end
+
+post '/session' do
+  user = User.find_by(email: params[:email])
+
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    session[:role] = params[:role]
-    # redirect to secure place
-    redirect '/'
+
+    redirect '/game'
   else
-    # show the login form becus pw or email wrong
     erb :login
   end
 end
 
-get '/session' do
+delete '/session' do
   session[:user_id] = nil
-  session[:role] = nil
   redirect '/login'
 end
 
+get '/session' do
+  session[:user_id] = nil
+  redirect '/login'
+end
 
+### ROUTES ###
+
+get '/' do
+
+  erb :index
+end
 
 get '/about' do
+
   erb :about
 end
 
@@ -52,3 +83,15 @@ get '/howtoplay' do
 
   erb :howtoplay
 end
+
+get '/leaderboard' do
+  redirect '/login' unless logged_in?
+
+  erb :leaderboard
+end
+
+get '/game' do
+
+  erb :game
+end
+
