@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Blackjack PDR</title>
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/reset.css'>
     <link rel='stylesheet' href='/stylesheets/main.css'>
@@ -16,12 +17,12 @@
           <a href="/howtoplay">How to Play</a>
           <a href="/game">Play Now</a>
           <a href="/leaderboard">Leader Board</a>
-          <% if logged_in? %>
+          <a><% if logged_in? %>
             <%= current_user.email %>
             <a href="/session" method="delete">Logout</a>
           <% else%>
             <a href="/">LogIn</a>
-          <%end%>
+          <%end%
         </nav>
       </header>
       <%= yield %>
