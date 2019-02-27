@@ -67,7 +67,6 @@ nav a:hover {
     border-radius: 0.5rem;
     cursor: pointer;
     transition: 0.2s linear;
-  
 }
 
 .btn:hover {
@@ -103,7 +102,15 @@ nav a:hover {
 
 /*** PAGES ***/
 
-.aboutpage {
+.heading {
+    color: #ff69da;
+    letter-spacing: 0.3em;
+    font-weight: bold;
+    font-size: 4em;
+    align-self: center;
+}
+
+.about {
     width: 50%;
     margin-top: 20rem;
     margin-bottom: 20rem;
@@ -111,6 +118,11 @@ nav a:hover {
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: #FFF;
+    text-align: center;
+}
+.about,.howtoplay p {
+    line-height: 30px;
+    font-size: 15px;
 }
 
 .howtoplay {
@@ -121,8 +133,16 @@ nav a:hover {
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: #FFF;
+    line-height: 30px;
+    font-size: 30px;
+    text-align: center;
 }
 
+
+.howtoplay img {
+    height: 40%;
+    width: 80%;
+}
 .btn-container {
     padding: 10px;
 }
@@ -146,13 +166,16 @@ nav a:hover {
     line-height: 1.42857143;
     background-color: #fff;
     background-image: none;
-    
 }
 
 .form-control:focus, .form-control:hover {
     outline: 0 none;
-    box-shadow: 1px 1px 15px #8d247313;
+    /* box-shadow: 1px 1px 15px #8d247313; */
     border-color: palevioletred;
+}
+
+.form-container a {
+    text-decoration: none;
 }
 
 .links img {
@@ -164,9 +187,49 @@ nav a:hover {
 }
 
 
+.leaderboard {
+    width: 50%;
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+    margin: 10px auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #FFF;
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    width:80%; 
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #67caf2}
+  
+  th {
+    background-color: rgb(250, 147, 69);
+    color: black;
+}
+
+.btn_leaderboard {
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.btn_leaderboard a {
+    text-decoration: none;
+    margin: 10px auto;
+}
+
 /*** GAME ***/
 
 /* board game - global */
+
 
 .game-board {
     margin: 0 auto;
