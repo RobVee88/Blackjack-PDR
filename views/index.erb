@@ -1,25 +1,23 @@
 <main class="homepage">
-    <img class="logo" src="/img/logo.svg" alt="Blackjack-PDR-logo">
-    
-    <div class="sign-up-container">
-        <form action="/register" method="post">
-            <div>
-                <label>Name</label>
-                <input type="text" name="name">
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="email" name="email">
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" name="password">
-            </div>
-            <div>
-                <button class="btn btn-sign-up">Sign up</button>
-            </div>
-        </form>
-
-        <p>If you already got an account, please<a href="/login">login</a></p>
-    </div>
+  <img class="logo" src="/img/logo.svg" alt="Blackjack-PDR-logo">
+  <div class="sign-up-container">
+    <form action="/register" method="post" class="form-container">
+      <div>
+        <%# <label>Name</label> %>
+        <input type="text" name="name" placeholder="Name" class="form-control">
+      </div>
+      <div>
+        <%# <label>Email</label> %>
+        <input type="email" name="email" placeholder="Email" class="form-control">
+      </div>
+      <div>
+        <%# <label>Password</label> %>
+        <input type="password" name="password" placeholder="Password" class="form-control">
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-sign-up">Sign up</button>
+        <p><a href="/login">already a user? login</a></p>
+      </div>
+    </form>
+  </div>
 </main>

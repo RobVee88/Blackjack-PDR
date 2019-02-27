@@ -59,7 +59,7 @@ end
 
 delete '/session' do
   session[:user_id] = nil
-  redirect '/login'
+  redirect '/'
 end
 
 get '/session' do
@@ -95,9 +95,14 @@ get '/game' do
   erb :game
 end
 
-get '/users' do
-  @user = User.find(params[:user_id])
-  erb :leaderboard
+post '/api/users' do
+  user = User.new
+  user.points = params[:points]
+  user.save 
+  content_type 'application/json'
+  {
+    points: User.where(user_id: params[:user_id])
+  }.to_json
 end
 
 get '/api/users' do
