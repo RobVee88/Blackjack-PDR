@@ -1,51 +1,81 @@
 <main class='game-board'>
-    <section class="dealer">
-        <div class="dealer-cards">
-            <div class="dealer-card-1">
-                <img src="/img/card_H-K.svg" alt="">
+    <section class="dealer-pile">
+        <div class="dealer images">
+            <%# <div class="cards dealer-card-1">
+                <img src="/img/card_C-K.svg" alt="">
             </div>
+            <div class="cards card-relative dealer-card-1">
+                <img src="/img/card_H-K.svg" alt="">
+            </div> %>
         </div>
+
+        <div class="score-container">
+            <p class="dealer score">0</p>
+        </div>
+        
     
     </section>
     
     <section class="game-info">
-        <button class="btn deal">deal</button>
-        <p>player wins</p>
-        <p>push</p>
-        <p>dealer wins</p>
+        <p class="game-message">player wins</p>
     </section>
 
-    <section class="player">
-        <div class="player-cards">
-            <div class="player-card-1">
-                    
+    <section class="player-piles">
+        <%# <div class="player-card-pile">
+            <div class="player images">
+                <div class="card">
+                    <img src="/img/card_H-J.svg" alt="">
+                </div>
+                <div class="cards card-relative dealer-card-1">
+                    <img src="/img/card_S-2.svg" alt="">
+                </div>
+                <div class="cards card-relative dealer-card-1">
+                    <img src="/img/card_S-5.svg" alt="">
+                </div>
             </div>
-        </div>
+            <div class="score-container">
+                <p>0</p>
+            </div>
+        </div> %>
 
     </section>
 
     <section class="game-nav">
-        <div class="player-info">
+        <div class="player-info-container">
             <div class="player-name">
-                <p>username to insert</p>
-            </div>
-
-            <div class="player-funds">
-                <p>$0000</p>
+                <p><%= current_user.name %></p>
             </div>
 
             <div class="player-score">
-                <p>0000</p>
+                <p>5000</p>
+            </div>
+        </div>
+        <div class="center">
+            <div class="bet-amount">
+            <p>0</p>
+            </div>
+            <div class="btn-game-container">
+                <button class="btn deal">deal</button>
+                <button class="btn double">double</button>
+                <button class="btn split">split</button>
+                <button class="btn hit">hit</button>
+                <button class="btn stand">stand</button>
             </div>
         </div>
 
-        <div class="btn-game">
-            <button class="btn double">double</button>
-            <button class="btn split">split</button>
-            <button class="btn deal">hit</button>
-            <button class="btn stand">stand</button>
+
+        <div class="bet-container">
+            <button class="btn btn-allin">all in</button>
+            <button class="chips btn-5">$5</button>
+            <button class="chips btn-25">$25</button>
+            <button class="chips btn-50">$50</button>
+            <button class="chips btn-100">$100</button>
+            <button class="chips btn-500">$500</button>
         </div>
     
+
+
     </section>
+    <script src="/javascripts/application.js"></script>
 </main>
 
