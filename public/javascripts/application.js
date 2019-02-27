@@ -93,8 +93,8 @@ var createPile = (classname) => {
     div = document.createElement('div');
     div.className = `${pile.classname}-container player-card-pile`;
     div.innerHTML = `
-    <div class="score-container"><p class="${pile.classname} score"></p></div>
-    <div class="${pile.classname} images"></div>`;
+    <div class="${pile.classname} images"></div>
+    <div class="score-container"><p class="${pile.classname} score"></p></div>`;
     divPlayerPiles.appendChild(div);
 }
 
@@ -111,10 +111,11 @@ var dealCard = (pile) => {
     imgDiv = document.createElement('div');
     //if its not the first card 
     //add class card-relative and increase the offset by a set amount for each card before it
+    //not working yet
     imgDiv.className = `${pile.classname}-img card`;
     if(pile.cards.length > 1) {
         imgDiv.className += ' card-relative';
-        imgDiv.right = `${(pile.cards.length - 1) * 20}px`;
+        imgDiv.style.right = `${(pile.cards.length - 1) * 90}px`;
     }
     img = document.createElement('img');
     img.src = dealtCard[0].imgUrl;
