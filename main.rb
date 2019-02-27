@@ -26,23 +26,23 @@ end
 
 
 ## USERS ##
-get '/register' do
+get '/signup' do
 
-  erb :register
+  erb :signup
 end
 
-post '/register' do
+post '/signup' do
 user = User.new
 user.name = params[:name]
 user.email = params[:email]
 user.password = params[:password]
 user.save
-redirect '/login'
+redirect '/'
 end
 
 get '/login' do
   redirect '/' if current_user
-  erb :login
+  erb :signup
 end
 
 post '/session' do
@@ -51,9 +51,9 @@ post '/session' do
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
 
-    redirect '/game'
+    redirect '/leaderboard'
   else
-    erb :login
+    erb :signup
   end
 end
 
@@ -64,7 +64,7 @@ end
 
 get '/session' do
   session[:user_id] = nil
-  redirect '/login'
+  redirect '/'
 end
 
 ### ROUTES ###
@@ -85,28 +85,29 @@ get '/howtoplay' do
 end
 
 get '/leaderboard' do
-  redirect '/login' unless logged_in?
+  redirect '/' unless logged_in?
 
+  @leaders = User.order('points DESC').limit(10)
   erb :leaderboard
 end
 
 get '/game' do
-  redirect '/login' unless logged_in?
+  redirect '/' unless logged_in?
   erb :game
 end
 
-post '/api/users' do
-  user = User.new
-  user.points = params[:points]
-  user.save 
-  content_type 'application/json'
-  {
-    points: User.where(user_id: params[:user_id])
-  }.to_json
-end
+# post '/api/users' do
+#   user = User.new
+#   user.points = params[:points]
+#   user.save 
+#   content_type 'application/json'
+#   {
+#     points: User.where(user_id: params[:user_id])
+#   }.to_json
+# end
 
-get '/api/users' do
-  users = User.all
-  content_type 'application/json'
-  users.to_json
-end
+# get '/api/users' do
+#   users = User.all
+#   content_type 'application/json'
+#   users.to_json
+# end
