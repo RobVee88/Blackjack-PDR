@@ -52,8 +52,12 @@ nav {
 
 nav a {
     text-decoration: none;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+}
+
+nav a:hover {
+    color: rgb(236, 0, 140);
 }
 
 .btn {
@@ -69,6 +73,7 @@ nav a {
 .btn:hover {
     background-color: rgb(236, 0, 140);
 }
+
 
 /*** INDEX / HOMEPAGE ***/
 
@@ -96,14 +101,8 @@ nav a {
 }
 
 
-/*** GAME ***/
-
-
-.dealer-card-1 {
-    max-width: 10%;
-}
-
 /*** PAGES ***/
+
 .aboutpage {
     width: 50%;
     margin-top: 20rem;
@@ -163,12 +162,31 @@ nav a {
 .links a {
     text-decoration: none;
 }
+
+
+/*** GAME ***/
+
 /* board game - global */
 
 .game-board {
     margin: 0 auto;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+}
+
+section {
+    padding: 1rem 0 1rem 0;
+}
+
+.card {
+    border: 1px solid rgb(45, 45, 45);
+    border-radius: 0.5rem;
+    background-color: #FFF;
+    height: 45%;
+}
+
+.card-relative {
+    position: relative;
 }
 
 /* sections */
@@ -176,41 +194,105 @@ nav a {
 .dealer-pile,
 .images,
 .game-info,
-.player-card-pile {
+.player-card-pile,
+.player-piles {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.dealer-pile {
+    min-height: 38%;
+    align-items: center;
+}
+
+.game-info {
+    background: linear-gradient(to right, rgba(245, 120, 195,0) 0%, rgb(245, 120, 195) 25%, rgba(245, 120, 195,1) 50%, rgba(245, 120, 195,1) 75%, rgba(245, 120, 195,0) 100%);
+}
+
+.game-message {
+    font-family: 'Satisfy', cursive;
+    font-size: 2.5rem;
+    color: rgb(236, 0, 140);
+}
+
+.player-piles {
+    min-height: 38%;
+    align-items: center;
+}
+
+.current-bet-container {
+    min-height: 10%;
 }
 
 .game-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-.card {
-    max-width: 50%;
+.btn-game-nav,
+.btn-allin {
+    height: 4rem;
+    background-color: rgba(215, 103, 170, 0.6);
+    color: #FFF;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.2s linear;
 }
 
-.center-game-nav {
+.btn-game-nav:hover,
+.btn-allin:hover {
+    background-color: rgb(236, 0, 140);
+}
+
+.player-info-container {
+    height: 4rem;
+    width: 4rem;
+    background-color: rgba(215, 103, 170, 0.6);
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+.player-name p, 
+.player-score p {
+    color: #FFF;
+    font-weight: 600;
+}
+
+.current-bet-container,
+.player-info-container,
+.bet-container {
+    padding: 0 1rem;
+}
+
+.center {
     display: flex;
     flex-direction: column;
 }
 
-.card-relative {
-    position: relative;
-    right: 10px;
-}
-
 .chips {
-    border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-image: url(public/img/chips.png);
+  background-image: no-repeat;
+  background-position: 50% 50%;
+  border: none;
+  color: transparent;
+  cursor: pointer;
 }
 
 .score-container {
-    background-color: grey;
+    background-color: rgba(215, 103, 170, 0.6);
+    color: #FFF;
+    font-weight: 600;
     padding: 20px;
     border-radius: 5px;
-    height: 100%;
 }
 
 
@@ -221,14 +303,19 @@ nav a {
     background-color: blue;
 }
 
-.game-info {
+/* .game-info {
     background-color: green
-}
+} */
 
 .player-piles {
     background-color: red
 }
 
+.current-bet-container {
+    background-color: orange
+}
+
 .game-nav {
     background-color: pink
 }
+

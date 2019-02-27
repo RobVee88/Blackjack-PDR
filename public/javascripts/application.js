@@ -190,7 +190,6 @@ var checkFor21 = (pile) => {
 }
 
 var checkForBust = (pile) => {
-    debugger
     scores = getScores(pile);
     scoreHigh = scores[0]; 
     scoreLow = scores[1];
