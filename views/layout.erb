@@ -10,22 +10,19 @@
   <body>
     <div class='wrapper'>
       <header class="nav-container">
-        <img class="logo-nav" src="/img/logo.svg" alt="Blackjack-PDR-logo" href="/">
+        <a href="/"> <img class="logo-nav" src="/img/logo.svg" alt="Blackjack-PDR-logo" width="1000" height="1000">
+        </a>
         <nav>
           <a href="/about">About</a>
           <a href="/howtoplay">How to Play</a>
           <a href="/game">Play Now</a>
-          <a href="/login">LogIn</a>
-            <div>
-              <% if current_user.nil? %>
-                <a href="/register">SignIn</a>
-              <% else %>
-                <a>
-                  <%= current_user.email %>
-                </a>
-                <a href="/session" method="delete">Logout</a>
-              <% end %>
-            </div>
+          <a href="/leaderboard">Leader Board</a>
+          <% if logged_in? %>
+            <%= current_user.email %>
+            <a href="/session" method="delete">Logout</a>
+          <% else%>
+            <a href="/login">LogIn</a>
+          <%end%>
         </nav>
       </header>
       <%= yield %>

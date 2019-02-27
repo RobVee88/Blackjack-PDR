@@ -85,11 +85,12 @@ a {
 .login-container {
     width: 50%;
     margin-bottom: 20rem;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     /* align-content: flex-end; */
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: #FFF;
+    margin: 10px auto;
 }
 
 
@@ -97,4 +98,56 @@ a {
 
 .dealer-card-1 {
     max-width: 10%;
+}
+
+/*** PAGES ***/
+.aboutpage {
+    width: 50%;
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+    margin: 10px auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #FFF;
+}
+
+.howtoplay {
+    width: 50%;
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+    margin: 10px auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #FFF;
+}
+
+.btn-container {
+    padding: 10px;
+}
+
+.form-container > div {
+    text-align: center;
+}
+
+.form-control {
+    font-size: 14px;
+    color: #282828;
+    border-radius: 3px;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    -webkit-box-shadow: none;
+    border: 1px solid #bbb;
+    padding: 10px;
+    display: block;
+    width: 97%;
+    line-height: 1.42857143;
+    background-color: #fff;
+    background-image: none;
+}
+
+.form-control:focus, .form-control:hover {
+    outline: 0 none;
+    box-shadow: 1px 1px 15px #8d247313;
+    border-color: palevioletred;
 }
