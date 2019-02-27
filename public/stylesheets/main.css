@@ -151,7 +151,7 @@ nav a {
     outline: 0 none;
     box-shadow: 1px 1px 15px #8d247313;
     border-color: palevioletred;
-=======
+} */
 
 /* board game - global */
 
@@ -184,10 +184,10 @@ nav a {
     max-width: 50%;
 }
 
-/* .center-game-nav {
+.center-game-nav {
     display: flex;
     flex-direction: column;
-} */
+}
 
 .card-relative {
     position: relative;
