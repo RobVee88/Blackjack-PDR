@@ -4,12 +4,19 @@ var btnHit = document.querySelector('.hit');
 var btnStand = document.querySelector('.stand');
 var btnDouble = document.querySelector('.double');
 var btnSplit = document.querySelector('.split');
+var btnAllIn = document.querySelector('.btn-allin');
+var btnBet5 = document.querySelector('.btn-5');
+var btnBet25 = document.querySelector('.btn-25');
+var btnBet50 = document.querySelector('.btn-50');
+var btnBet100 = document.querySelector('.btn-100');
+var btnBet500 = document.querySelector('.btn-500');
 
 var pMessages = document.querySelector('.game-message');
+var pBetAmount = document.querySelector('.bet-amount > p');
+var pPlayerScore = document.querySelector('.player-score > p');
 
 var divPlayerPiles = document.querySelector('.player-piles');
 var divDealerImages = document.querySelector('.dealer-pile > .images');
-
 
 //player {
 //  name: "",
@@ -29,7 +36,7 @@ var divDealerImages = document.querySelector('.dealer-pile > .images');
 //player
 var player = {
     name: "Player",
-    money: 5000,
+    money: 0,
     piles: [] 
 }
 //dealer = {
@@ -126,6 +133,8 @@ var dealCard = (pile) => {
     updateScore(pile);
 };
 
+
+
 //updateScore(pile)
 //  getScore(pile)
 //  update score p with pile classname
@@ -191,7 +200,6 @@ var checkFor21 = (pile) => {
 }
 
 var checkForBust = (pile) => {
-    debugger
     scores = getScores(pile);
     scoreHigh = scores[0]; 
     scoreLow = scores[1];
@@ -219,9 +227,7 @@ var checkIfDealerStands = () => {
 
 //
 var btnDealHandler = () => {
-    resetGame();
-    createPile('pile-1');
-    currentPile = player.piles[0];
+    //resetGame();
     dealCard(currentPile);
     dealCard(dealer);
     dealCard(currentPile);
@@ -273,6 +279,7 @@ var dealerMove = () => {
     while(!checkFor21(dealer) && !checkForBust(dealer) && !checkIfDealerStands()) {
         dealCard(dealer);
     }
+
     if(checkFor21(dealer)) {
         pMessages.textContent = "Dealer has 21!!!"
         //reset game
@@ -327,6 +334,8 @@ var btnSplitHandler = () => {
     div = document.getElementsByClassName(`${currentPile.classname} images`);
     div[0].appendChild(imgDiv);
     
+    dealCard(previousPile);
+    dealCard(currentPile);
     updateScore(currentPile);
     updateScore(previousPile);
     previousPileF();
@@ -380,13 +389,15 @@ var displayRightButtons = () => {
                 //display split
             //if currentpile value = 9,10 or 11
                 //display double
-    activePiles = player.piles.filter((pile) => {return pile.active});
-    if(activePiles.length === 0) {
-        showButtons(btnDeal);
-        hideButtons(btnStand,btnHit,btnSplit,btnDouble);
+    if(player.piles[0].cards.length === 0) {
+        showButtons(btnAllIn,btnBet5,btnBet25,btnBet50,btnBet100,btnBet500);
+        hideButtons(btnStand,btnHit,btnSplit,btnDouble,btnDeal);
+        if(currentPile.bet > 0) {
+            showButtons(btnDeal);
+        }
     } else {
         showButtons(btnHit,btnStand);
-        hideButtons(btnDeal,btnSplit,btnDouble);
+        hideButtons(btnDeal,btnSplit,btnDouble,btnAllIn,btnBet5,btnBet25,btnBet50,btnBet100,btnBet500);
         if(currentPile.cards.length === 2 && (currentPile.cards[0].score[0] === currentPile.cards[1].score[0])) {
             showButtons(btnSplit);
         }
@@ -407,6 +418,41 @@ var showButtons = (...buttons) => {
         button.style.visibility = 'visible';
     });
 }
+btnBetHandler = (event) => {
+    buttonClass = event.target.classList[1];
+    if(buttonClass === 'btn-allin') {
+        currentPile.bet += player.money;
+        player.money = 0;
+        pBetAmount.textContent = currentPile.bet;
+        pPlayerScore.textContent = 0;
+    } else if (buttonClass === 'btn-5') {
+        currentPile.bet += 5;
+        player.money -= 5;
+        pBetAmount.textContent = currentPile.bet;
+        pPlayerScore.textContent = player.money; 
+    } else if (buttonClass === 'btn-25') {
+        currentPile.bet += 25;
+        player.money -= 25;
+        pBetAmount.textContent = currentPile.bet;
+        pPlayerScore.textContent = player.money; 
+    } else if (buttonClass === 'btn-50') {
+        currentPile.bet += 50;
+        player.money -= 50;
+        pBetAmount.textContent = currentPile.bet;
+        pPlayerScore.textContent = player.money; 
+    } else if (buttonClass === 'btn-100') {
+        currentPile.bet += 100;
+        player.money -= 100;
+        pBetAmount.textContent = currentPile.bet;
+        pPlayerScore.textContent = player.money; 
+    } else if (buttonClass === 'btn-500') {
+        currentPile.bet += 500;
+        player.money -= 500;
+        pBetAmount.textContent = currentPile.bet;
+        pPlayerScore.textContent = player.money; 
+    }  
+    displayRightButtons();
+}
 
 //add eventlisteners to buttons
 btnDeal.addEventListener('click', btnDealHandler);
@@ -414,8 +460,20 @@ btnHit.addEventListener('click', btnHitHandler);
 btnStand.addEventListener('click', btnStandHandler);
 btnSplit.addEventListener('click', btnSplitHandler);
 // btnDouble.addEventListener('click', btnDoubleHandler);
+btnAllIn.addEventListener('click', btnBetHandler);
+btnBet5.addEventListener('click', btnBetHandler);
+btnBet25.addEventListener('click', btnBetHandler);
+btnBet50.addEventListener('click', btnBetHandler);
+btnBet100.addEventListener('click', btnBetHandler);
+btnBet500.addEventListener('click', btnBetHandler);
+
 
 var deck = createDeck();
 var currentPile;
-
+player.money = Number(document.querySelector('.player-score > p').textContent);
+createPile('pile-1');
+currentPile = player.piles[0];
 displayRightButtons();
+
+
+
