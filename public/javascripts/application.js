@@ -5,7 +5,7 @@ var btnStand = document.querySelector('.stand');
 var btnDouble = document.querySelector('.double');
 var btnSplit = document.querySelector('.split');
 
-var pMessages = document.querySelector('.messages');
+var pMessages = document.querySelector('.game-message');
 
 var divPlayerPiles = document.querySelector('.player-piles');
 var divDealerImages = document.querySelector('.dealer-pile > .images');
@@ -91,10 +91,9 @@ var createPile = (classname) => {
     }
     player.piles.push(pile);
     div = document.createElement('div');
-    div.className = `${pile.classname}-container`;
-    //add player-card-pile to class name
+    div.className = `${pile.classname}-container player-card-pile`;
     div.innerHTML = `
-    <div><p class="${pile.classname} score"></p></div>
+    <div class="score-container"><p class="${pile.classname} score"></p></div>
     <div class="${pile.classname} images"></div>`;
     divPlayerPiles.appendChild(div);
 }
@@ -110,14 +109,15 @@ var dealCard = (pile) => {
     var dealtCard = deck.splice(deck.indexOf(deck[Math.floor(Math.random()* deck.length)]),1);
     pile.cards.push(dealtCard[0]);
     imgDiv = document.createElement('div');
-    //add classname card to div && if its not the first card 
+    //if its not the first card 
     //add class card-relative and increase the offset by a set amount for each card before it
-    imgDiv.className = `${pile.classname}-img`;
+    imgDiv.className = `${pile.classname}-img card`;
+    if(pile.cards.length > 1) {
+        imgDiv.className += ' card-relative';
+        imgDiv.right = `${(pile.cards.length - 1) * 20}px`;
+    }
     img = document.createElement('img');
-    //img.right = increase relative to number of cards in cards array
     img.src = dealtCard[0].imgUrl;
-
-    img.style.width = '50px';
 
     imgDiv.appendChild(img);
     div = document.getElementsByClassName(`${pile.classname} images`);
@@ -130,7 +130,6 @@ var dealCard = (pile) => {
 //  update score p with pile classname
 //  
 var updateScore = (pile) => {
-    debugger
     scores = getScores(pile);
     p = document.getElementsByClassName(`${pile.classname} score`);
     if (scores[0] === scores[1]) {
