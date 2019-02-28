@@ -134,7 +134,12 @@ var dealCard = (pile) => {
         imgDiv.style.left = `${(pile.cards.length - 1) * 20}px`;
     }
     img = document.createElement('img');
-    img.src = dealtCard[0].imgUrl;
+    if((pile.classname === 'dealer') && pile.cards.length === 2) {
+        img.src = "/img/card-reverse-1.svg";
+        img.className += ' reverse-card';
+    } else {
+        img.src = dealtCard[0].imgUrl;
+    }
     imgDiv.appendChild(img);
     div = document.getElementsByClassName(`${pile.classname} images`);
     div[0].appendChild(imgDiv);
@@ -245,14 +250,19 @@ var btnDealHandler = () => {
     if (checkForBlackJack(currentPile)) {
         pMessages.textContent = "Player has blackjack!"
         currentPile.active = false;
+        player.money += (pile.bet * 2.5);
+        pPlayerScore.textContent = player.money;
+        bet = 0;
         displayRightButtons();
+        setTimeout(resetGame, 3000);
         //reset game
     } else if (checkForBlackJack(dealer)) {
         //we wont check this until player has finished
         pMessages.textContent = "DEALER has blackjack!"
         //reset game
+        bet = 0;
+        setTimeout(resetGame, 3000);
     }
-
     displayRightButtons();
 }
 
@@ -266,7 +276,7 @@ var btnHitHandler = () => {
         activePiles = player.piles.filter((pile) => { return pile.active });
         if (activePiles.length === 0) {
             displayRightButtons();
-            dealerMove();
+            setTimeout(dealerMove, 2000);
         } else {
             nextPile();
         }
@@ -278,7 +288,7 @@ var btnHitHandler = () => {
         activePiles = player.piles.filter((pile) => { return pile.active });
         if (activePiles.length === 0) {
             displayRightButtons();
-            dealerMove();
+            setTimeout(dealerMove, 2000);
         } else {
             nextPile();
         }
@@ -310,6 +320,10 @@ var playingScore = (score1, score2) => {
 
 //dealer move
 var dealerMove = () => {
+    //???
+    debugger
+    var reversedCard = document.querySelector('.reverse-card');
+    reversedCard.src = dealer.cards[1].imgUrl;
     nonBustedPiles = player.piles.filter((pile) => {
         return pile.busted === false;
     });
