@@ -34,6 +34,7 @@
 - User can logIn and check which player is leading in game.
 - User can play game with bets till he/she hits 21 and till the money runs off.
 - User can check How to play page.
+- Game reset in 3second automatically.
 
 ## Wireframes 
 
