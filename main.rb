@@ -102,8 +102,8 @@ put '/api/users' do
   user = User.find(params[:user_id])
   user.points = params[:points]
   user.save 
-  content_type 'application/json'
-  user.to_json
+  # content_type 'application/json'
+  # user.to_json
 end
 
 # get '/api/users' do
