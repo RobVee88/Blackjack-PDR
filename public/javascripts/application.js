@@ -581,7 +581,6 @@ var displayRightButtons = () => {
 }
 //to hide buttons
 var hideAllButtons = () => {
-    debugger
     buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
         button.style.opacity = '0.2';
@@ -623,7 +622,6 @@ btnBetHandler = (event) => {
         pBetAmount.textContent = bet;
 
         player.money -= 5;
-        debugger
         pPlayerScore.textContent = player.money;
     } else if (buttonClass === 'btn-25') {
         // currentPile.bet += 25;
