@@ -24,7 +24,7 @@
 - Created Tables using PSQL database and ActiveRecord.
 - Made frequent commit's.
 - Created a models for Users to logIn and save score.
-- Game reset itself.
+- Game reset by itself.
 - Made main.rb to store all the routes to run.
 - Created using RESTful routes(CRUD).
 - Made erb's file to display.
