@@ -426,11 +426,11 @@ var btnSplitHandler = () => {
     nextPile();
     currentPile.cards.push(card[0]);
     var imgDiv = document.createElement('div');
-    imgDiv.className = `${currentPile.classname}-img`;
+    imgDiv.className = `${currentPile.classname}-img card`;
     var img = document.createElement('img');
     img.src = card[0].imgUrl;
 
-    img.style.width = '50px';
+    // img.style.width = '50px';
 
     imgDiv.appendChild(img);
     div = document.getElementsByClassName(`${currentPile.classname} images`);
