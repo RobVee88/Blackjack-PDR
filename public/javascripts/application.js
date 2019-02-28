@@ -623,6 +623,7 @@ btnBetHandler = (event) => {
         pBetAmount.textContent = bet;
 
         player.money -= 5;
+        debugger
         pPlayerScore.textContent = player.money;
     } else if (buttonClass === 'btn-25') {
         // currentPile.bet += 25;
@@ -677,6 +678,6 @@ btnBet500.addEventListener('click', btnBetHandler);
 var deck = createDeck();
 var currentPile;
 var bet = 0;
-player.money = Number(document.querySelector('.player-score > p').textContent);
+// player.money = Number(document.querySelector('.leader-board-score').textContent);
 pMessages.textContent = "Welcome to BlackJack!";
 displayRightButtons();
