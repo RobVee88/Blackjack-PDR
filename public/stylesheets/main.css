@@ -333,8 +333,9 @@ table {
 }
 
 .btn-game-nav {
-    font-family: 'Satisfy', cursive;
-    color: rgb(236, 200, 0);
+    color: #FFF;
+    background-color: rgb(236, 0, 140);
+    font: 600;
     text-shadow: 2px 2px rgb(0, 0, 0);
     width: 50px;
     height: 50px;
@@ -347,20 +348,22 @@ table {
 
 .btn-game-nav:hover {
     color: rgb(236, 200, 0);
+    background-color: rgba(0, 99, 70, 0.9);
+    transition: 0.3s linear;
 }
 
 .btn-allin {
-    color: #FFF;
-    font: 600;
-    height: 50px;
-    background-color: rgb(236, 0, 140);
+    height: 70px;
+    width: 70px;
+    background: none;
+    border: none;
+    color: transparent;
     cursor: pointer;
-    margin: 0 10px 10px 0;
 }
 
-.btn-allin:hover {
-    background-color: rgba(0, 99, 70, 0.9);
-    transition: 0.3s linear;
+.btn-allin img {
+    height: 70px;
+    width: 70px;
 }
 
 .current-bet-container {
