@@ -15,6 +15,8 @@ var pMessages = document.querySelector('.game-message');
 var pBetAmount = document.querySelector('.current-bet-amount');
 var pPlayerScore = document.querySelector('.player-score > p');
 
+var pScores = document.querySelectorAll('.score');
+
 var divPlayerPiles = document.querySelector('.player-piles');
 var divDealerImages = document.querySelector('.dealer-pile > .images');
 
@@ -129,7 +131,7 @@ var dealCard = (pile) => {
     //not working yet
     imgDiv.className = `${pile.classname}-img card`;
     if (pile.cards.length > 1) {
-        imgDiv.style.left = `${(pile.cards.length - 1) * 90}px`;
+        imgDiv.style.left = `${(pile.cards.length - 1) * 20}px`;
     }
     img = document.createElement('img');
     img.src = dealtCard[0].imgUrl;
@@ -240,17 +242,17 @@ var btnDealHandler = () => {
     dealCard(dealer);
     dealCard(currentPile);
     dealCard(dealer);
-    if (checkForBlackJack(dealer)) {
-        //we wont check this until player has finished
-        pMessages.textContent = "DEALER has blackjack!"
-        //reset game
-    }
     if (checkForBlackJack(currentPile)) {
         pMessages.textContent = "Player has blackjack!"
         currentPile.active = false;
         displayRightButtons();
         //reset game
+    } else if (checkForBlackJack(dealer)) {
+        //we wont check this until player has finished
+        pMessages.textContent = "DEALER has blackjack!"
+        //reset game
     }
+
     displayRightButtons();
 }
 
@@ -308,7 +310,6 @@ var playingScore = (score1, score2) => {
 
 //dealer move
 var dealerMove = () => {
-    debugger
     nonBustedPiles = player.piles.filter((pile) => {
         return pile.busted === false;
     });
@@ -492,6 +493,16 @@ var displayRightButtons = () => {
     //display split
     //if currentpile value = 9,10 or 11
     //display double
+    //if no cards in any pile, hide score displays
+    if(dealer.cards.length === 0) {
+        pScores.forEach((p) => {
+            p.style.visibility = 'hidden';
+        });
+    } else {
+        pScores.forEach((p) => {
+            p.style.visibility = 'visible';
+        }); 
+    }
     if (player.piles.length === 0) {
         showButtons(btnAllIn, btnBet5, btnBet25, btnBet50, btnBet100, btnBet500);
         hideButtons(btnStand, btnHit, btnSplit, btnDouble, btnDeal);
@@ -524,7 +535,12 @@ var showButtons = (...buttons) => {
     });
 }
 btnBetHandler = (event) => {
-    buttonClass = event.target.classList[1];
+    if (event.target.tagName === 'IMG') {
+        buttonClass = event.target.closest('button').classList[1];
+    } else { 
+        buttonClass = event.target.classList[1];
+    }
+
     if (buttonClass === 'btn-allin') {
         // currentPile.bet += player.money;
         // pBetAmount.textContent = currentPile.bet;
