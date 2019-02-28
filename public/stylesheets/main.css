@@ -5,7 +5,6 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: rgb(45, 45, 45);
-    
 }
 
 *:focus {
@@ -16,9 +15,9 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: rgb(181, 250, 228);
+    background-image: url(/img/background-image-game.png);
+    background-size: cover;
 }
-
 
 /*** NAV ***/
 
@@ -27,11 +26,11 @@
     align-items: center;
     justify-content: space-between;
     background-color: #FFF;
-    min-height: 95px;
+    min-height: 75px;
 }
 
 .logo-nav {
-    margin: 0.5rem 1.5rem;
+    margin: 10px 0 0 15px;
     cursor: pointer;
 }
 
@@ -40,7 +39,7 @@
 }
 
 nav {
-    margin: 20px;
+    margin-right: 0.7rem;
     display: flex;
     grid-template-columns: 25% 25% 25% 25%;
 }
@@ -51,21 +50,22 @@ nav a {
     margin-right: 0.7rem;
 }
 
+.sign-in:hover,
 nav a:hover {
     color: rgb(236, 0, 140);
 }
 
 .btn {
-    background-color: rgba(215, 103, 170, 0.6);
+    background-color: rgb(236, 0, 140);
     color: #FFF;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: 0.2s linear;
 }
 
 .btn:hover {
-    background-color: rgb(236, 0, 140);
+    background-color: rgba(0, 99, 70, 0.8);
+    transition: 0.3s linear;
 }
 
 
@@ -91,19 +91,23 @@ nav a:hover {
     border-radius: 0.5rem;
     background-color: #FFF;
     margin: 10px auto;
-   
+}
+
+.btn-login {
+    margin-bottom: 0.5rem;
 }
 
 
-/*** PAGES ***/
+/*** ALL PAGES except GAMEBOARD ***/
 
 .heading {
-    color: #ff69da;
-    letter-spacing: 0.3em;
-    font-weight: bold;
+    font-family: 'Satisfy', cursive;
     font-size: 4em;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px rgb(0, 0, 0);
     align-self: center;
-    font-family: 'Laila', serif;
+    color: rgb(236, 200, 0);    
+    padding: 50px 0 20px 0;
 }
 
 .about {
@@ -115,7 +119,6 @@ nav a:hover {
     border-radius: 0.5rem;
     background-color: #FFF;
     text-align: center;
-
 }
 
 
@@ -124,18 +127,17 @@ nav a:hover {
     margin-top: 20rem;
     margin-bottom: 20rem;
     margin: 10px auto;
-    padding: 1rem;
+    padding: 12px 12px 0 12px;
     border-radius: 0.5rem;
     background-color: #FFF;
-    line-height: 30px;
-    font-size: 30px;
-    text-align: center;
 }
 
 .howtoplay p {
-    line-height: 30px;
+    line-height: 18px;
     font-size: 15px;
     font-family: 'Laila', serif;
+    padding-bottom: 12px;
+    margin: 5px;
 }
 
 .about p {
@@ -176,7 +178,7 @@ nav a:hover {
 .form-control:focus, .form-control:hover {
     outline: 0 none;
     /* box-shadow: 1px 1px 15px #8d247313; */
-    border-color: palevioletred;
+    border-color: rgb(236, 0, 140);
 }
 
 .form-container a {
@@ -216,8 +218,8 @@ nav a:hover {
 table {
     border-collapse: collapse;
     width: 80%; 
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     font-family: 'Laila', serif;
   }
   
@@ -227,10 +229,10 @@ table {
     font-family: 'Laila', serif;
   }
   
-  tr:nth-child(even){background-color: #67caf2}
+  tr:nth-child(odd){background-color: #bebebe}
   
   th {
-    background-color: rgb(250, 147, 69);
+    background-color: rgb(236, 0, 140);
     color: black;
     text-decoration: bold;
     font-family: 'Laila', serif;
@@ -254,21 +256,18 @@ table {
 
 .checkmore  a{
     text-decoration: none;
-    color: palevioletred;
+    color: rgb(236, 0, 140);
 }
-/*** GAME ***/
 
-/* board game - global */
 
+/*** GAMEBOARD ***/
+
+/* Global - gameboard */
 
 .game-board {
     margin: 0 auto;
     width: 100%;
-    height: calc(100% - 95px - 95px);
-}
-
-section {
-    padding: 1rem 0 1rem 0;
+    height: calc(100% - 90px - 130px);
 }
 
 .card {
@@ -279,7 +278,6 @@ section {
 }
 
 /* card container */
-
 .images {
     display: block;
     height: 150px;
@@ -293,41 +291,79 @@ section {
     justify-content: space-evenly;
 }
 
-.dealer-pile,
-.player-piles {
+.game-info {
+    max-height: 60px;
+}
+
+.dealer-pile {
     display: block;
 }
 
+.player-piles {
+    display: block;
+    margin-left: 1rem;
+}
 
 .player-card-pile {
     display: inline-block;
     width: 20%;
 }
 
-.piles-1,
+/* .piles-1,
 .score-container {
     display: block;
-}
+} */
 
 .dealer-pile {
-    min-height: 45%;
-    align-items: center;
-}
-
-.game-info {
-    background: linear-gradient(to right, rgba(245, 120, 195,0) 0%, rgb(245, 120, 195) 25%, rgba(245, 120, 195,1) 50%, rgba(245, 120, 195,1) 75%, rgba(245, 120, 195,0) 100%);
-    min-height: 10%;
+    min-height: 44%;
 }
 
 .game-message {
     font-family: 'Satisfy', cursive;
-    font-size: 2.5rem;
-    color: rgb(236, 0, 140);
+    font-size: 3rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    align-self: center;
+    color: rgb(236, 200, 0);
+    padding: none;  
 }
 
 .player-piles {
-    min-height: 45%;
-    align-items: center;
+    min-height: 43%;
+}
+
+.btn-game-nav {
+    color: #FFF;
+    background-color: rgb(236, 0, 140);
+    font: 600;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s linear;
+    margin: 0 10px 10px 0;
+}
+
+.btn-game-nav:hover {
+    color: rgb(236, 200, 0);
+    background-color: rgba(0, 99, 70, 0.9);
+    transition: 0.3s linear;
+}
+
+.btn-allin {
+    height: 70px;
+    width: 70px;
+    background: none;
+    border: none;
+    color: transparent;
+    cursor: pointer;
+}
+
+.btn-allin img {
+    height: 70px;
+    width: 70px;
 }
 
 .current-bet-container {
@@ -336,52 +372,32 @@ section {
     align-items: center;
     justify-content: center;
     position: fixed;
-    right: 2rem;
-    bottom: 95px;
+    right: 5rem;
+    bottom: 140px;
     width: 100px;
-    height: 35px;
-    border-radius: 0.5rem;
-    background-color:rgb(236, 0, 140);
+    height: 100px;
+    border-radius: 75px;
+    border: 3px dotted rgba(236, 200, 0, 0.8);
+    background-image: url(/img/chips.svg);
 }
 
 .current-bet-amount {
-    color: #FFF;
-    font-weight: 600;
+    color: rgb(45, 45, 45);
+    font-family: 'Arvo', serif;
+    font-size: 1rem;
 }
 
 .game-nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end; 
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 95px;
-}
-
-.btn-game-nav,
-.btn-allin {
-    height: 4rem;
-    background-color: rgba(215, 103, 170, 0.6);
-    color: #FFF;
-    font-weight: 600;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: 0.2s linear;
-}
-
-.btn-game-nav:hover,
-.btn-allin:hover {
-    background-color: rgb(236, 0, 140);
-}
-
-.player-info-container {
-    height: 4rem;
-    width: 4rem;
-    background-color: rgba(215, 103, 170, 0.6);
-    margin: 1rem;
-    border-radius: 0.5rem;
+    height: 130px;
+    background-image: url(/img/background-image-game-nav.png);
+    background-size: cover;
+    padding-bottom: 25px;
 }
 
 .player-name p, 
@@ -390,47 +406,73 @@ section {
     font-weight: 600;
 }
 
-.current-bet-container,
-.player-info-container,
+.score {
+    color: #FFF;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+}
+
+.player-info-container {
+    flex-grow: 1;
+    margin-left: 1.5rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.center {
+    flex-grow: 2;
+    margin-right: 1rem;
+    display: flex;
+    align-items: flex-end;
+}
+
 .bet-container {
-    padding: 0 1rem;
+    margin-right: 2rem;
+    display: flex;
+    align-items: flex-end;
 }
 
 .chips {
   height: 70px;
   width: 70px;
-  background-position: 50% 50%;
   background: none;
   border: none;
   color: transparent;
   cursor: pointer;
 }
 
-.score {
-    background-color: rgba(215, 103, 170, 0.6);
-    color: #FFF;
-    font-weight: 600;
-    padding: 20px;
-    border-radius: 5px;
+.chips img {
+    height: 70px;
+    width: 70px;
 }
 
-
-
-/*** TEMP ***/ 
-
-.dealer-pile {
-    background-color: blue;
+.player-score {
+    background-color: #FFF;
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    box-shadow: 2px 2px rgb(0, 0, 0);
 }
 
-/* .game-info {
-    background-color: green
-} */
-
-.player-piles {
-    background-color: red
+.player-score p {
+    margin-right: 5px;
+    color: rgb(45, 45, 45);
+    text-align: center;
 }
 
-.game-nav {
-    background-color: pink
+/* blocked by js TO FIX with Rob / Daniel see screenshot for html div*/
+.current-score {
+    font-size: 20px;
+    text-align: center;
 }
 
+/*** EXTRA STLYING IMAGE ***/
+
+.background-deco-table {
+    position: fixed;
+    bottom: 20%; 
+    right: 33.3%;
+    width: 35%;
+}
