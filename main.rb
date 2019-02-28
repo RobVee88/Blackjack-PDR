@@ -93,18 +93,18 @@ end
 
 get '/game' do
   redirect '/' unless logged_in?
+  @user_id = session[:user_id]
   erb :game
 end
 
-# post '/api/users' do
-#   user = User.new
-#   user.points = params[:points]
-#   user.save 
-#   content_type 'application/json'
-#   {
-#     points: User.where(user_id: params[:user_id])
-#   }.to_json
-# end
+# updating user or points
+put '/api/users' do
+  user = User.find(params[:user_id])
+  user.points = params[:points]
+  user.save 
+  content_type 'application/json'
+  user.to_json
+end
 
 # get '/api/users' do
 #   users = User.all

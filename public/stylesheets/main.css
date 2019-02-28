@@ -1,3 +1,4 @@
+
 /*** GLOBAL SET UP ***/
 
 * {
@@ -102,6 +103,7 @@ nav a:hover {
     font-weight: bold;
     font-size: 4em;
     align-self: center;
+    font-family: 'Laila', serif;
 }
 
 .about {
@@ -113,11 +115,9 @@ nav a:hover {
     border-radius: 0.5rem;
     background-color: #FFF;
     text-align: center;
+
 }
-.about,.howtoplay p {
-    line-height: 30px;
-    font-size: 15px;
-}
+
 
 .howtoplay {
     width: 50%;
@@ -131,6 +131,19 @@ nav a:hover {
     font-size: 30px;
     text-align: center;
 }
+
+.howtoplay p {
+    line-height: 30px;
+    font-size: 15px;
+    font-family: 'Laila', serif;
+}
+
+.about p {
+    line-height: 30px;
+    font-size: 15px;
+    font-family: 'Laila', serif;
+}
+
 
 .howtoplay img {
     height: 40%;
@@ -172,13 +185,18 @@ nav a:hover {
 }
 
 .links img {
-    width: 10px;
+    width: 20px;
 }
 
 .links a {
     text-decoration: none;
 }
 
+.links h3,h4,a {
+    line-height: 30px;
+    font-size: 15px;
+    font-family: 'Laila', serif;
+}
 
 .leaderboard {
     width: 50%;
@@ -190,16 +208,24 @@ nav a:hover {
     background-color: #FFF;
     text-align: center;
 }
+
+.leaderboard h2 {
+    line-height: 30px;
+    font-size: 15px;
+    font-family: 'Laila', serif;
+}
 table {
     border-collapse: collapse;
     width: 80%; 
     margin-left:auto;
     margin-right:auto;
+    font-family: 'Laila', serif;
   }
   
   th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
+    font-family: 'Laila', serif;
   }
   
   tr:nth-child(even){background-color: #67caf2}
@@ -207,6 +233,9 @@ table {
   th {
     background-color: rgb(250, 147, 69);
     color: black;
+    text-decoration: bold;
+    font-family: 'Laila', serif;
+    font-size: 120%;
 }
 
 .btn_leaderboard {
@@ -219,6 +248,15 @@ table {
     margin: 10px auto;
 }
 
+.icon img {
+    height: 3%;
+    width: 3%;
+}
+
+.checkmore  a{
+    text-decoration: none;
+    color: palevioletred;
+}
 /*** GAME ***/
 
 /* board game - global */
