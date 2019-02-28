@@ -581,7 +581,6 @@ var displayRightButtons = () => {
 }
 //to hide buttons
 var hideAllButtons = () => {
-    debugger
     buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
         button.style.opacity = '0.2';
@@ -677,6 +676,6 @@ btnBet500.addEventListener('click', btnBetHandler);
 var deck = createDeck();
 var currentPile;
 var bet = 0;
-player.money = Number(document.querySelector('.player-score > p').textContent);
+player.money = Number(document.querySelector('.leader-board-score').textContent);
 pMessages.textContent = "Welcome to BlackJack!";
 displayRightButtons();
