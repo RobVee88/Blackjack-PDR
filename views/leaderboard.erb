@@ -5,15 +5,15 @@
   <table class="leaderboard_table">
     <tbody>
       <tr>
-        <th>Name</th>
-        <th>Score</th>
+        <th>NAME</th>
+        <th>SCORE</th>
       </tr>
       <% @leaders.each do |leader|%>
         <tr>
-          <td><%= leader.name%> </td>
-          <td><%= leader.points%> </td>
+          <td><%= leader.name %></td>
+          <td><%= leader.points %></td>
         </tr>
-      <%end%>
+      <% end %>
     </tbody>
   </table>
   <button class="btn btn_leaderboard">
