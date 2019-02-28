@@ -37,7 +37,7 @@ var divDealerImages = document.querySelector('.dealer-pile > .images');
 var player = {
     name: "Player",
     money: 0,
-    piles: [] 
+    piles: []
 }
 //dealer = {
 //  classname: "",
@@ -57,7 +57,7 @@ var createDeck = () => {
     var deck = [];
 
     //create a single card
-    var createCard = (suit,value,score) => {
+    var createCard = (suit, value, score) => {
         return {
             suit: suit,
             value: value,
@@ -67,13 +67,13 @@ var createDeck = () => {
     }
     //create all cards for a specific suit
     var createSuit = (suit) => {
-        for(i = 2;i <= 10; i++) {
-            deck.push(createCard(suit,i,[i]));
+        for (i = 2; i <= 10; i++) {
+            deck.push(createCard(suit, i, [i]));
         }
         deck.push(createCard(suit, "J", [10]));
         deck.push(createCard(suit, "Q", [10]));
         deck.push(createCard(suit, "K", [10]));
-        deck.push(createCard(suit, "A", [1,11]));
+        deck.push(createCard(suit, "A", [1, 11]));
     }
     createSuit("S");
     createSuit("H");
@@ -117,9 +117,9 @@ var createPile = (classname) => {
 // updateScore(pile)
 //draw card function
 var dealCard = (pile) => {
-    var dealtCard = deck.splice(deck.indexOf(deck[Math.floor(Math.random()* deck.length)]),1);
+    var dealtCard = deck.splice(deck.indexOf(deck[Math.floor(Math.random() * deck.length)]), 1);
     pile.cards.push(dealtCard[0]);
-    if(deck.length === 0) {
+    if (deck.length === 0) {
         deck = createDeck();
         console.log("New deck!");
     }
@@ -128,7 +128,7 @@ var dealCard = (pile) => {
     //add class card-relative and increase the offset by a set amount for each card before it
     //not working yet
     imgDiv.className = `${pile.classname}-img card`;
-    if(pile.cards.length > 1) {
+    if (pile.cards.length > 1) {
         imgDiv.style.left = `${(pile.cards.length - 1) * 90}px`;
     }
     img = document.createElement('img');
@@ -151,22 +151,22 @@ var updateScore = (pile) => {
     if (scores[0] === scores[1]) {
         p[0].textContent = scores[0];
     } else {
-        if(scores[0] < 21) {
+        if (scores[0] < 21) {
             p[0].textContent = scores[0] + " / " + scores[1];
         } else {
             p[0].textContent = scores[1];
         }
     }
-} 
+}
 
 //getScore(pile)
 // reduce values from cards array
 // return scores (hi and lo)
 var getScores = (pile) => {
-    playerScoreHigh = 0; 
+    playerScoreHigh = 0;
     playerScoreLow = 0;
     pile.cards.forEach((card) => {
-        if(card.value === "A") {
+        if (card.value === "A") {
             playerScoreHigh += card.score[1];
             playerScoreLow += card.score[0];
         } else {
@@ -174,7 +174,7 @@ var getScores = (pile) => {
             playerScoreLow += card.score[0];
         }
     });
-    return [playerScoreHigh,playerScoreLow];
+    return [playerScoreHigh, playerScoreLow];
 }
 
 //checkForBlackJack(pile) returns true or false
@@ -182,12 +182,12 @@ var getScores = (pile) => {
 //  check if high score is 21
 var checkForBlackJack = (pile) => {
     var scores = getScores(pile);
-    scoreHigh = scores[0]; 
+    scoreHigh = scores[0];
 
     //check blackjack
-    if(scoreHigh === 21) {
+    if (scoreHigh === 21) {
         return true;
-    } 
+    }
     return false;
 }
 
@@ -196,10 +196,10 @@ var checkForBlackJack = (pile) => {
 // check if score is over 21
 var checkFor21 = (pile) => {
     scores = getScores(pile);
-    scoreHigh = scores[0]; 
+    scoreHigh = scores[0];
     scoreLow = scores[1];
     //check for 21
-    if(scoreHigh === 21 || scoreLow === 21) {
+    if (scoreHigh === 21 || scoreLow === 21) {
         return true;
     }
     return false;
@@ -207,10 +207,10 @@ var checkFor21 = (pile) => {
 
 var checkForBust = (pile) => {
     scores = getScores(pile);
-    scoreHigh = scores[0]; 
+    scoreHigh = scores[0];
     scoreLow = scores[1];
     //check for bust
-    if(scoreLow > 21) {
+    if (scoreLow > 21) {
         return true;
     } else {
         return false;
@@ -222,10 +222,10 @@ var checkForBust = (pile) => {
 //      check if score is lower than all of the player piles
 var checkIfDealerStands = () => {
     scores = getScores(dealer);
-    scoreHigh = scores[0]; 
+    scoreHigh = scores[0];
     scoreLow = scores[1];
     //check if dealer stands, we will have to make it so it doesnt stand when player has higher score
-    if(scoreHigh >= 17 && scoreLow >= 17) {
+    if (scoreHigh >= 17 && scoreLow >= 17) {
         return true;
     }
     return false;
@@ -240,12 +240,12 @@ var btnDealHandler = () => {
     dealCard(dealer);
     dealCard(currentPile);
     dealCard(dealer);
-    if(checkForBlackJack(dealer)) {
+    if (checkForBlackJack(dealer)) {
         //we wont check this until player has finished
         pMessages.textContent = "DEALER has blackjack!"
         //reset game
     }
-    if(checkForBlackJack(currentPile)) {
+    if (checkForBlackJack(currentPile)) {
         pMessages.textContent = "Player has blackjack!"
         currentPile.active = false;
         displayRightButtons();
@@ -258,23 +258,23 @@ var btnDealHandler = () => {
 var btnHitHandler = () => {
     dealCard(currentPile);
     currentPile.bet = bet;
-    if(checkFor21(currentPile)) {
+    if (checkFor21(currentPile)) {
         pMessages.textContent = "Player has 21!!!"
         currentPile.active = false;
-        activePiles = player.piles.filter((pile) => { return pile.active});
-        if(activePiles.length === 0) {
+        activePiles = player.piles.filter((pile) => { return pile.active });
+        if (activePiles.length === 0) {
             displayRightButtons();
             dealerMove();
         } else {
             nextPile();
         }
     }
-    if(checkForBust(currentPile)) {
+    if (checkForBust(currentPile)) {
         pMessages.textContent = "Player has BUSTED!!!"
         currentPile.active = false;
         currentPile.busted = true;
-        activePiles = player.piles.filter((pile) => {return pile.active});
-        if(activePiles.length === 0) {
+        activePiles = player.piles.filter((pile) => { return pile.active });
+        if (activePiles.length === 0) {
             displayRightButtons();
             dealerMove();
         } else {
@@ -286,9 +286,9 @@ var btnHitHandler = () => {
 
 //settle bet
 var settleBet = (pile) => {
-    if(pile.winner === true) {
+    if (pile.winner === true) {
         player.money += (pile.bet * 2);
-        pPlayerScore.textContent = player.money; 
+        pPlayerScore.textContent = player.money;
         currentPile.active = false;
         bet = 0;
     } else if (pile.winner === false) {
@@ -299,7 +299,7 @@ var settleBet = (pile) => {
 
 //choose which score plays
 var playingScore = (score1, score2) => {
-    if(score1 < 22) {
+    if (score1 < 22) {
         return score1;
     } else {
         return score2;
@@ -312,17 +312,17 @@ var dealerMove = () => {
     nonBustedPiles = player.piles.filter((pile) => {
         return pile.busted === false;
     });
-    if(nonBustedPiles.length > 0) {
-        while(!checkFor21(dealer) && !checkForBust(dealer) && !checkIfDealerStands()) {
+    if (nonBustedPiles.length > 0) {
+        while (!checkFor21(dealer) && !checkForBust(dealer) && !checkIfDealerStands()) {
             dealCard(dealer);
         }
 
-        if(checkFor21(dealer)) {
+        if (checkFor21(dealer)) {
             pMessages.textContent = "Dealer has 21!!!"
             player.piles.forEach((pile) => {
                 var playerScores = getScores(pile);
-                if(!pile.busted) {
-                    if(playerScores[0] === 21 || playerScores[1] === 21) {
+                if (!pile.busted) {
+                    if (playerScores[0] === 21 || playerScores[1] === 21) {
                         //pile.winner = false;
                         //push??
                         //settleBet(pile);
@@ -334,10 +334,10 @@ var dealerMove = () => {
                 }
             });
             setTimeout(resetGame, 3000);
-        } else if(checkForBust(dealer)) {
+        } else if (checkForBust(dealer)) {
             pMessages.textContent = "Dealer has BUSTED!!!"
             player.piles.forEach((pile) => {
-                if(!pile.busted) {
+                if (!pile.busted) {
                     pile.winner = true;
                     settleBet(pile);
                 } else {
@@ -346,19 +346,19 @@ var dealerMove = () => {
                 }
             });
             setTimeout(resetGame, 3000);
-        } else if(checkIfDealerStands()) {
+        } else if (checkIfDealerStands()) {
             pMessages.textContent = "Dealer stands!!!"
             player.piles.forEach((pile) => {
                 var playerScores = getScores(pile);
                 var dealerScores = getScores(dealer);
-                if(!pile.busted) {
-                    if(playingScore(playerScores[0],playerScores[1]) > playingScore(dealerScores[0], dealerScores[1])) {
+                if (!pile.busted) {
+                    if (playingScore(playerScores[0], playerScores[1]) > playingScore(dealerScores[0], dealerScores[1])) {
                         pile.winner = true;
                         settleBet(pile);
-                    } else if (playingScore(playerScores[0],playerScores[1]) < playingScore(dealerScores[0], dealerScores[1])) {
+                    } else if (playingScore(playerScores[0], playerScores[1]) < playingScore(dealerScores[0], dealerScores[1])) {
                         pile.winner = false;
                         settleBet(pile);
-                    } else if (playingScore(playerScores[0],playerScores[1]) === playingScore(dealerScores[0], dealerScores[1])) {
+                    } else if (playingScore(playerScores[0], playerScores[1]) === playingScore(dealerScores[0], dealerScores[1])) {
                         pMessages.textContent = "PUSH!";
                     }
                 } else {
@@ -381,8 +381,8 @@ var dealerMove = () => {
 var btnStandHandler = () => {
     currentPile.active = false;
     currentPile.bet = bet;
-    activePiles = player.piles.filter((pile) => {return pile.active});
-    if(activePiles.length === 0) {
+    activePiles = player.piles.filter((pile) => { return pile.active });
+    if (activePiles.length === 0) {
         displayRightButtons();
         dealerMove();
     } else {
@@ -402,7 +402,7 @@ var btnSplitHandler = () => {
     //add classname player-pile
     var classname = `pile-${numberOfPiles + 1}`
     createPile(classname);
-    var card = currentPile.cards.splice(1,1);
+    var card = currentPile.cards.splice(1, 1);
     //get rid of image from first pile
     var images = document.getElementsByClassName(`${currentPile.classname} images`);
     images[0].removeChild(images[0].childNodes[1]);
@@ -420,7 +420,7 @@ var btnSplitHandler = () => {
     imgDiv.appendChild(img);
     div = document.getElementsByClassName(`${currentPile.classname} images`);
     div[0].appendChild(imgDiv);
-    
+
     dealCard(previousPile);
     dealCard(currentPile);
     updateScore(currentPile);
@@ -433,7 +433,7 @@ var btnSplitHandler = () => {
 var btnDoubleHandler = () => {
     currentPile.bet = bet;
     player.money -= bet;
-    pPlayerScore.textContent = player.money; 
+    pPlayerScore.textContent = player.money;
     bet = bet * 2;
     currentPile.bet = bet;
     pBetAmount.textContent = bet;
@@ -442,22 +442,22 @@ var btnDoubleHandler = () => {
 
 //when splitting, we need to move between piles
 var nextPile = () => {
-    if(player.piles.length > 1) {
-            currentIndex = player.piles.findIndex((pile) => {
-                return pile.classname == currentPile.classname;
-            });
-            currentPile = player.piles[currentIndex + 1];
+    if (player.piles.length > 1) {
+        currentIndex = player.piles.findIndex((pile) => {
+            return pile.classname == currentPile.classname;
+        });
+        currentPile = player.piles[currentIndex + 1];
     }
     bet = currentPile.bet;
     displayRightButtons();
 }
 var previousPileF = () => {
-    if(player.piles.length > 1) {
+    if (player.piles.length > 1) {
         currentIndex = player.piles.findIndex((pile) => {
             return pile.classname == currentPile.classname;
         });
         currentPile = player.piles[currentIndex - 1];
-    } 
+    }
     bet = currentPile.bet;
     displayRightButtons();
 }
@@ -465,17 +465,17 @@ var previousPileF = () => {
 //reset game
 var resetGame = () => {
     //destroy/empty all piles
-    while(dealer.cards.length > 0) {
+    while (dealer.cards.length > 0) {
         dealer.cards.pop();
     };
-    while(player.piles.length > 0) {
+    while (player.piles.length > 0) {
         pile = player.piles.pop();
     };
     //destroy all card images
-    while(divDealerImages.firstChild) {
+    while (divDealerImages.firstChild) {
         divDealerImages.removeChild(divDealerImages.firstChild);
     }
-    while(divPlayerPiles.firstChild) {
+    while (divPlayerPiles.firstChild) {
         divPlayerPiles.removeChild(divPlayerPiles.firstChild);
     }
     pMessages.textContent = "";
@@ -487,45 +487,45 @@ var resetGame = () => {
 var displayRightButtons = () => {
     //if no active piles, only display deal
     //if active piles
-        //if display hit & stand
-            //if currentpile.cards.length = 2 and have same value 
-                //display split
-            //if currentpile value = 9,10 or 11
-                //display double
-    if(player.piles.length === 0) {
-        showButtons(btnAllIn,btnBet5,btnBet25,btnBet50,btnBet100,btnBet500);
-        hideButtons(btnStand,btnHit,btnSplit,btnDouble,btnDeal);
-        if(bet > 0) {
+    //if display hit & stand
+    //if currentpile.cards.length = 2 and have same value 
+    //display split
+    //if currentpile value = 9,10 or 11
+    //display double
+    if (player.piles.length === 0) {
+        showButtons(btnAllIn, btnBet5, btnBet25, btnBet50, btnBet100, btnBet500);
+        hideButtons(btnStand, btnHit, btnSplit, btnDouble, btnDeal);
+        if (bet > 0) {
             showButtons(btnDeal);
         }
     } else {
-        showButtons(btnHit,btnStand);
-        hideButtons(btnDeal,btnSplit,btnDouble,btnAllIn,btnBet5,btnBet25,btnBet50,btnBet100,btnBet500);
-        if(currentPile.cards.length === 2 && (currentPile.cards[0].score[0] === currentPile.cards[1].score[0])) {
+        showButtons(btnHit, btnStand);
+        hideButtons(btnDeal, btnSplit, btnDouble, btnAllIn, btnBet5, btnBet25, btnBet50, btnBet100, btnBet500);
+        if (currentPile.cards.length === 2 && (currentPile.cards[0].score[0] === currentPile.cards[1].score[0])) {
             showButtons(btnSplit);
         }
         var scores = getScores(currentPile);
-        if((scores[0] > 8 && scores[0] < 12)|| (scores[1] > 8 && scores[1] < 12)) {
+        if ((scores[0] > 8 && scores[0] < 12) || (scores[1] > 8 && scores[1] < 12)) {
             showButtons(btnDouble);
         }
     }
 }
 //to hide buttons
 var hideButtons = (...buttons) => {
-	buttons.forEach((button) => {
+    buttons.forEach((button) => {
         button.style.opacity = '0.2';
         button.disabled = true;
     });
 }
 var showButtons = (...buttons) => {
-	buttons.forEach((button) => {
+    buttons.forEach((button) => {
         button.style.opacity = '1';
         button.disabled = false;
     });
 }
 btnBetHandler = (event) => {
     buttonClass = event.target.classList[1];
-    if(buttonClass === 'btn-allin') {
+    if (buttonClass === 'btn-allin') {
         // currentPile.bet += player.money;
         // pBetAmount.textContent = currentPile.bet;
         bet = player.money;
@@ -548,7 +548,7 @@ btnBetHandler = (event) => {
         pBetAmount.textContent = bet;
 
         player.money -= 25;
-        pPlayerScore.textContent = player.money; 
+        pPlayerScore.textContent = player.money;
     } else if (buttonClass === 'btn-50') {
         // currentPile.bet += 50;
         // pBetAmount.textContent = currentPile.bet;
@@ -556,7 +556,7 @@ btnBetHandler = (event) => {
         pBetAmount.textContent = bet;
 
         player.money -= 50;
-        pPlayerScore.textContent = player.money; 
+        pPlayerScore.textContent = player.money;
     } else if (buttonClass === 'btn-100') {
         // currentPile.bet += 100;
         // pBetAmount.textContent = currentPile.bet;
@@ -564,7 +564,7 @@ btnBetHandler = (event) => {
         pBetAmount.textContent = bet;
 
         player.money -= 100;
-        pPlayerScore.textContent = player.money; 
+        pPlayerScore.textContent = player.money;
     } else if (buttonClass === 'btn-500') {
         // currentPile.bet += 500;
         // pBetAmount.textContent = currentPile.bet;
@@ -572,8 +572,8 @@ btnBetHandler = (event) => {
         pBetAmount.textContent = bet;
 
         player.money -= 500;
-        pPlayerScore.textContent = player.money; 
-    }  
+        pPlayerScore.textContent = player.money;
+    }
     displayRightButtons();
 }
 
@@ -596,6 +596,3 @@ var currentPile;
 var bet = 0;
 player.money = Number(document.querySelector('.player-score > p').textContent);
 displayRightButtons();
-
-
-
