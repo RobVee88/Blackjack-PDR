@@ -12,7 +12,7 @@ var btnBet100 = document.querySelector('.btn-100');
 var btnBet500 = document.querySelector('.btn-500');
 
 var pMessages = document.querySelector('.game-message');
-var pBetAmount = document.querySelector('.bet-amount > p');
+var pBetAmount = document.querySelector('.current-bet-amount');
 var pPlayerScore = document.querySelector('.player-score > p');
 
 var divPlayerPiles = document.querySelector('.player-piles');
@@ -121,8 +121,7 @@ var dealCard = (pile) => {
     //not working yet
     imgDiv.className = `${pile.classname}-img card`;
     if(pile.cards.length > 1) {
-        imgDiv.className += ' card-relative';
-        imgDiv.style.right = `${(pile.cards.length - 1) * 90}px`;
+        imgDiv.style.left = `${(pile.cards.length - 1) * 15}px`;
     }
     img = document.createElement('img');
     img.src = dealtCard[0].imgUrl;

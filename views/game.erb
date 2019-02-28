@@ -12,12 +12,12 @@
   <section class="player-piles">
   </section>
   <section class="current-bet-container">
-      <p class="current-bet-amount">dsaklgjasd;gjl;gjl</p>
+      <p class="current-bet-amount">50</p>
   </section>
   <section class="game-nav">
     <div class="player-info-container">
       <div class="player-name">
-        <p><%= current_user.name %></p>
+        <p class="dealer score"><%= current_user.name %></p>
       </div>
       <div class="player-score">
         <p>5000</p>
@@ -34,11 +34,11 @@
     </div>
     <div class="bet-container">
       <button class="btn btn-allin">all in</button>
-      <button class="chips btn-5"><img src="/img/chips.png"></button>
-      <button class="chips btn-25"></button>
-      <button class="chips btn-50"></button>
-      <button class="chips btn-100"></button>
-      <button class="chips btn-500"></button>
+      <button class="chips btn-5"><img src="/img/chips-5.svg"></button>
+      <button class="chips btn-25"><img src="/img/chips-25.svg"></button>
+      <button class="chips btn-50"><img src="/img/chips-50.svg"></button>
+      <button class="chips btn-100"><img src="/img/chips-100.svg"></button>
+      <button class="chips btn-500"><img src="/img/chips-500.svg"></button>
     </div>
   </section>
   <script src="/javascripts/application.js"></script>
