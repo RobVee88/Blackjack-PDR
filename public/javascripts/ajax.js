@@ -1,6 +1,6 @@
 console.log('ajax');
 var savePoints = () => {
-  var playerScore = document.querySelector('.player-score p').textContent;
+  var playerScore = document.querySelector('.leaderboard-score').textContent;
 
   var userId = document.querySelector('.userId').textContent;
 
