@@ -288,7 +288,6 @@ section {
 
 /* sections */
 .game-info,
-.player-card-pile,
 .center {
     display: flex;
     flex-direction: row;
@@ -300,11 +299,15 @@ section {
     display: block;
 }
 
-.pile-1-container,
-.player-piles,
+
+.player-card-pile {
+    display: inline-block;
+    width: 20%;
+}
+
 .piles-1,
 .score-container {
-    display: inline-block;
+    display: block;
 }
 
 .dealer-pile {
