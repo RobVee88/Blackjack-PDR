@@ -119,31 +119,33 @@ var createPile = (classname) => {
 // updateScore(pile)
 //draw card function
 var dealCard = (pile) => {
-    var dealtCard = deck.splice(deck.indexOf(deck[Math.floor(Math.random() * deck.length)]), 1);
-    pile.cards.push(dealtCard[0]);
-    if (deck.length === 0) {
-        deck = createDeck();
-        console.log("New deck!");
+    if(pile.active || pile.classname === 'dealer') {
+        var dealtCard = deck.splice(deck.indexOf(deck[Math.floor(Math.random() * deck.length)]), 1);
+        pile.cards.push(dealtCard[0]);
+        if (deck.length === 0) {
+            deck = createDeck();
+            console.log("New deck!");
+        }
+        imgDiv = document.createElement('div');
+        //if its not the first card 
+        //add class card-relative and increase the offset by a set amount for each card before it
+        //not working yet
+        imgDiv.className = `${pile.classname}-img card`;
+        if (pile.cards.length > 1) {
+            imgDiv.style.left = `${(pile.cards.length - 1) * 20}px`;
+        }
+        img = document.createElement('img');
+        if((pile.classname === 'dealer') && pile.cards.length === 2) {
+            img.src = "/img/card-reverse-1.svg";
+            img.className += ' reverse-card';
+        } else {
+            img.src = dealtCard[0].imgUrl;
+        }
+        imgDiv.appendChild(img);
+        div = document.getElementsByClassName(`${pile.classname} images`);
+        div[0].appendChild(imgDiv);
+        updateScore(pile);
     }
-    imgDiv = document.createElement('div');
-    //if its not the first card 
-    //add class card-relative and increase the offset by a set amount for each card before it
-    //not working yet
-    imgDiv.className = `${pile.classname}-img card`;
-    if (pile.cards.length > 1) {
-        imgDiv.style.left = `${(pile.cards.length - 1) * 20}px`;
-    }
-    img = document.createElement('img');
-    if((pile.classname === 'dealer') && pile.cards.length === 2) {
-        img.src = "/img/card-reverse-1.svg";
-        img.className += ' reverse-card';
-    } else {
-        img.src = dealtCard[0].imgUrl;
-    }
-    imgDiv.appendChild(img);
-    div = document.getElementsByClassName(`${pile.classname} images`);
-    div[0].appendChild(imgDiv);
-    updateScore(pile);
 };
 
 
@@ -172,15 +174,27 @@ var updateScore = (pile) => {
 var getScores = (pile) => {
     playerScoreHigh = 0;
     playerScoreLow = 0;
-    pile.cards.forEach((card) => {
-        if (card.value === "A") {
-            playerScoreHigh += card.score[1];
-            playerScoreLow += card.score[0];
+    var reverse = document.querySelector('.reverse-card');
+    if(pile.classname === 'dealer' && reverse != null ) {
+        if(pile.cards[0].value ==="A") {
+            playerScoreHigh += pile.cards[0].score[1];
+            playerScoreLow += pile.cards[0].score[0];
         } else {
-            playerScoreHigh += card.score[0];
-            playerScoreLow += card.score[0];
+            playerScoreHigh += pile.cards[0].score[0];
+            playerScoreLow += pile.cards[0].score[0];
         }
-    });
+    }
+    else {
+        pile.cards.forEach((card) => {
+            if (card.value === "A") {
+                playerScoreHigh += card.score[1];
+                playerScoreLow += card.score[0];
+            } else {
+                playerScoreHigh += card.score[0];
+                playerScoreLow += card.score[0];
+            }
+        });
+    }
     return [playerScoreHigh, playerScoreLow];
 }
 
@@ -248,19 +262,22 @@ var btnDealHandler = () => {
     dealCard(currentPile);
     dealCard(dealer);
     if (checkForBlackJack(currentPile)) {
-        pMessages.textContent = "Player has blackjack!"
+        pMessages.textContent = "Player has blackjack! Player wins!"
         currentPile.active = false;
         player.money += (pile.bet * 2.5);
         pPlayerScore.textContent = player.money;
         bet = 0;
-        displayRightButtons();
+        savePoints();
+        hideAllButtons();
         setTimeout(resetGame, 3000);
         //reset game
     } else if (checkForBlackJack(dealer)) {
         //we wont check this until player has finished
-        pMessages.textContent = "DEALER has blackjack!"
+        pMessages.textContent = "Dealer has blackjack! Better luck next time.."
         //reset game
         bet = 0;
+        hideAllButtons();
+        savePoints();
         setTimeout(resetGame, 3000);
     }
     displayRightButtons();
@@ -275,21 +292,24 @@ var btnHitHandler = () => {
         currentPile.active = false;
         activePiles = player.piles.filter((pile) => { return pile.active });
         if (activePiles.length === 0) {
-            displayRightButtons();
+            hideAllButtons();
             setTimeout(dealerMove, 2000);
         } else {
+            currentPile.winner = true;
+            settleBet(pile);
             nextPile();
         }
     }
     if (checkForBust(currentPile)) {
-        pMessages.textContent = "Player has BUSTED!!!"
+        pMessages.textContent = "Player busts! Dealer wins."
         currentPile.active = false;
         currentPile.busted = true;
         activePiles = player.piles.filter((pile) => { return pile.active });
         if (activePiles.length === 0) {
-            displayRightButtons();
+            hideAllButtons();
             setTimeout(dealerMove, 2000);
         } else {
+            savePoints();
             nextPile();
         }
     }
@@ -303,9 +323,11 @@ var settleBet = (pile) => {
         pPlayerScore.textContent = player.money;
         currentPile.active = false;
         bet = 0;
+        savePoints();
     } else if (pile.winner === false) {
         currentPile.active = false;
         bet = 0;
+        savePoints();
     }
 }
 
@@ -321,9 +343,11 @@ var playingScore = (score1, score2) => {
 //dealer move
 var dealerMove = () => {
     //???
-    debugger
     var reversedCard = document.querySelector('.reverse-card');
-    reversedCard.src = dealer.cards[1].imgUrl;
+    if(reversedCard != null) {
+        reversedCard.src = dealer.cards[1].imgUrl;
+        reversedCard.classList.remove('reverse-card');
+    }
     nonBustedPiles = player.piles.filter((pile) => {
         return pile.busted === false;
     });
@@ -342,6 +366,10 @@ var dealerMove = () => {
                         //push??
                         //settleBet(pile);
                         pMessages.textContent = "Push!";
+                        player.money += pile.bet;
+                        pPlayerScore.textContent = player.money;
+                        bet = 0;
+                        savePoints();
                     }
                 } else {
                     pile.winner = false;
@@ -350,7 +378,7 @@ var dealerMove = () => {
             });
             setTimeout(resetGame, 3000);
         } else if (checkForBust(dealer)) {
-            pMessages.textContent = "Dealer has BUSTED!!!"
+            pMessages.textContent = "Dealer busts!!! Player wins!"
             player.piles.forEach((pile) => {
                 if (!pile.busted) {
                     pile.winner = true;
@@ -362,22 +390,29 @@ var dealerMove = () => {
             });
             setTimeout(resetGame, 3000);
         } else if (checkIfDealerStands()) {
-            pMessages.textContent = "Dealer stands!!!"
+            pMessages.textContent = "Dealer stands."
             player.piles.forEach((pile) => {
                 var playerScores = getScores(pile);
                 var dealerScores = getScores(dealer);
                 if (!pile.busted) {
                     if (playingScore(playerScores[0], playerScores[1]) > playingScore(dealerScores[0], dealerScores[1])) {
                         pile.winner = true;
+                        pMessages.textContent = "Player wins!"
                         settleBet(pile);
                     } else if (playingScore(playerScores[0], playerScores[1]) < playingScore(dealerScores[0], dealerScores[1])) {
                         pile.winner = false;
+                        pMessages.textContent = "Dealer wins."
                         settleBet(pile);
                     } else if (playingScore(playerScores[0], playerScores[1]) === playingScore(dealerScores[0], dealerScores[1])) {
-                        pMessages.textContent = "PUSH!";
+                        pMessages.textContent = "Push!";
+                        player.money += pile.bet;
+                        pPlayerScore.textContent = player.money;
+                        bet = 0;
+                        savePoints();
                     }
                 } else {
                     pile.winner = false;
+                    pMessages.textContent = "Dealer wins."
                     settleBet(pile);
                 }
             });
@@ -394,14 +429,16 @@ var dealerMove = () => {
 
 //
 var btnStandHandler = () => {
-    currentPile.active = false;
-    currentPile.bet = bet;
-    activePiles = player.piles.filter((pile) => { return pile.active });
-    if (activePiles.length === 0) {
-        displayRightButtons();
-        dealerMove();
-    } else {
-        nextPile();
+    if(currentPile.active) {
+        currentPile.active = false;
+        currentPile.bet = bet;
+        activePiles = player.piles.filter((pile) => { return pile.active });
+        if (activePiles.length === 0) {
+            displayRightButtons();
+            dealerMove();
+        } else {
+            nextPile();
+        }
     }
 }
 
@@ -446,13 +483,20 @@ var btnSplitHandler = () => {
 
 //double
 var btnDoubleHandler = () => {
-    currentPile.bet = bet;
     player.money -= bet;
     pPlayerScore.textContent = player.money;
     bet = bet * 2;
     currentPile.bet = bet;
     pBetAmount.textContent = bet;
     dealCard(currentPile);
+    currentPile.active = false;
+    activePiles = player.piles.filter((pile) => { return pile.active });
+    if (activePiles.length === 0) {
+        displayRightButtons();
+        dealerMove();
+    } else {
+        nextPile();
+    }
 }
 
 //when splitting, we need to move between piles
@@ -536,6 +580,15 @@ var displayRightButtons = () => {
     }
 }
 //to hide buttons
+var hideAllButtons = () => {
+    debugger
+    buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.style.opacity = '0.2';
+        button.disabled = true;
+    });
+}
+
 var hideButtons = (...buttons) => {
     buttons.forEach((button) => {
         button.style.opacity = '0.2';
@@ -625,4 +678,5 @@ var deck = createDeck();
 var currentPile;
 var bet = 0;
 player.money = Number(document.querySelector('.player-score > p').textContent);
+pMessages.textContent = "Welcome to BlackJack!";
 displayRightButtons();

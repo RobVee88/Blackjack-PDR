@@ -586,6 +586,10 @@ table {
     text-align: center;
 }
 
+.userId {
+    height: 0px;
+    visibility: hidden;
+}
 /*** EXTRA STLYING IMAGE ***/
 
 .background-deco-table {
