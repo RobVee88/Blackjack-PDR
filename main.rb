@@ -36,6 +36,7 @@ user = User.new
 user.name = params[:name]
 user.email = params[:email]
 user.password = params[:password]
+user.points = 5000
 user.save
 redirect '/'
 end
@@ -94,6 +95,12 @@ end
 get '/game' do
   redirect '/' unless logged_in?
   @user_id = session[:user_id]
+  points = User.find(@user_id).points
+  if points === nil || points === 0
+    @user_points = 1000
+  else 
+    @user_points = points
+  end
   erb :game
 end
 

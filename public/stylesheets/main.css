@@ -434,3 +434,7 @@ section {
     background-color: pink
 }
 
+.userId {
+    height: 0px;
+    visibility: hidden;
+}
