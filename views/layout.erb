@@ -19,7 +19,7 @@
           <a href="/game">Play Now</a>
           <a href="/leaderboard">Leader Board</a>
           <% if logged_in? %>
-            <%= current_user.email %>
+            <a><%= current_user.email %> </a>
             <a href="/session" method="delete">Logout</a>
           <% else%>
             <a href="/">LogIn</a>
