@@ -14,13 +14,13 @@
       <header class="nav-container">
         <a class="logo-link" href="/"><img class="logo-nav" src="/img/logo.svg" alt="Blackjack-PDR-logo"></a>
         <nav>
-          <a href="/about">About</a>
-          <a href="/howtoplay">How to Play</a>
-          <a href="/game">Play Now</a>
-          <a href="/leaderboard">Leader Board</a>
+          <a class="threed" href="/about">About</a>
+          <a class="threed" href="/howtoplay">How to Play</a>
+          <a class="threed" href="/game">Play Now</a>
+          <a class="threed" href="/leaderboard">Leader Board</a>
           <% if logged_in? %>
-            <a><%= current_user.email %> </a>
-            <a href="/session" method="delete">Logout</a>
+            <a class="threed" ><%= current_user.email %> </a>
+            <a class="threed" href="/session" method="delete">Logout</a>
           <% else%>
             <a href="/">LogIn</a>
           <%end%>
