@@ -53,4 +53,4 @@
 ## Deployment 
 - Heroku
 
-# Check out our Project - 
+# Check out our Project - [BlackJac-PDR](https://blackjack-pdr.herokuapp.com/)

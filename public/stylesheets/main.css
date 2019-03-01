@@ -83,7 +83,7 @@ nav a:hover {
     padding: 2rem 0 2rem 0;
 }
 
-.sign-up-container,
+
 .login-container {
     width: 50%;
     margin-bottom: 20rem;
@@ -91,6 +91,17 @@ nav a:hover {
     border-radius: 0.5rem;
     background-color: #FFF;
     margin: 10px auto;
+}
+
+.sign-up-container {
+    margin-top: 10%;
+    padding-top: 25px;
+    width: 50%;
+    margin-bottom: 20rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #FFF;
+    margin: 5% auto;
 }
 
 .btn-login {
@@ -175,7 +186,7 @@ nav a:hover {
     border: 1px solid #bbb;
     padding: 10px;
     display: block;
-    width: 97%;
+    width: 100%;
     line-height: 1.42857143;
     background-color: #fff;
     background-image: none;
