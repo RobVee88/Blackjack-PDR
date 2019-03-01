@@ -20,7 +20,7 @@
           <a class="threed" href="/game">Play Now</a>
           <a class="threed" href="/leaderboard">Leader Board</a>
           <% if logged_in? %>
-            <a class="threed" ><%= current_user.email %> </a>
+            <a class="threed" ><%= current_user.name%> </a>
             <a class="threed" href="/session" method="delete">Logout</a>
           <% else%>
             <a href="/">LogIn</a>

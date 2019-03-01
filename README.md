@@ -24,6 +24,7 @@
 - Created Tables using PSQL database and ActiveRecord.
 - Made frequent commit's.
 - Created a models for Users to logIn and save score.
+- Game reset by itself.
 - Made main.rb to store all the routes to run.
 - Created using RESTful routes(CRUD).
 - Made erb's file to display.
@@ -34,6 +35,7 @@
 - User can logIn and check which player is leading in game.
 - User can play game with bets till he/she hits 21 and till the money runs off.
 - User can check How to play page.
+- Game reset in 3second automatically.
 
 ## Wireframes 
 
