@@ -389,12 +389,15 @@ table {
     border-radius: 0.5rem;
     background-color: #FFF;
     position: absolute;
+    height: 150px;
+    z-index: 1;
 }
 
 /* card container */
 .images {
     display: block;
     height: 150px;
+    width: 12%;
 }
 
 /* sections */
@@ -410,26 +413,29 @@ table {
 }
 
 .dealer-pile {
-    display: block;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .player-piles {
-    display: block;
-    margin-left: 1rem;
+    display: grid;
+    grid-auto-flow: column;
 }
 
 .player-card-pile {
-    display: inline-block;
-    width: 20%;
+    display: grid;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
 }
-
-/* .piles-1,
-.score-container {
-    display: block;
-} */
 
 .dealer-pile {
     min-height: 44%;
+    width:80%;
+    margin: 0 auto
 }
 
 .game-message {
@@ -450,7 +456,6 @@ table {
     color: #FFF;
     background-color: rgb(236, 0, 140);
     text-shadow: 2px 2px rgb(0, 0, 0);
-    /* width: 50px; */
     height: 50px;
     border: none;
     border-radius: 0.5rem;
@@ -522,10 +527,13 @@ table {
 .score {
     color: #FFF;
     font-weight: 600;
-    padding: 20px;
+    padding: 10px;
+    margin-top: 10px;
     border-radius: 5px;
     position: relative;
     text-align: center;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.7);
 }
 
 .player-info-container {

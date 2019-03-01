@@ -132,7 +132,7 @@ var dealCard = (pile) => {
         //not working yet
         imgDiv.className = `${pile.classname}-img card`;
         if (pile.cards.length > 1) {
-            imgDiv.style.left = `${(pile.cards.length - 1) * 20}px`;
+            imgDiv.style.transform = `translateX(${(pile.cards.length - 1) * 20}px)`;
         }
         img = document.createElement('img');
         if((pile.classname === 'dealer') && pile.cards.length === 2) {
@@ -537,7 +537,7 @@ var resetGame = () => {
     while (divPlayerPiles.firstChild) {
         divPlayerPiles.removeChild(divPlayerPiles.firstChild);
     }
-    pMessages.textContent = "";
+    pMessages.textContent = "Good luck!";
     pBetAmount.textContent = 0;
     displayRightButtons();
 }
