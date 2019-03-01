@@ -37,11 +37,11 @@
 - This Web app enable users to play blackJack game and updates latest score in leaderBoard and users can compete to be in top.
 - Users can check - How to play page and learn Game tricks and tips.
 - Game reset in 3second automatically after current game - display message about Dealer wins or player wins.
-- 
+
 
 ## Wireframes 
 
-- [wireframe](/img/wireframe.jpg)
+- wireframe in image file.
 
 ## Diagrams - database schema
 - One module for Users
