@@ -83,7 +83,7 @@ nav a:hover {
     padding: 2rem 0 2rem 0;
 }
 
-.sign-up-container,
+
 .login-container {
     width: 50%;
     margin-bottom: 20rem;
@@ -91,6 +91,17 @@ nav a:hover {
     border-radius: 0.5rem;
     background-color: #FFF;
     margin: 10px auto;
+}
+
+.sign-up-container {
+    margin-top: 10%;
+    padding-top: 25px;
+    width: 50%;
+    margin-bottom: 20rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #FFF;
+    margin: 2% auto;
 }
 
 .btn-login {
@@ -175,7 +186,7 @@ nav a:hover {
     border: 1px solid #bbb;
     padding: 10px;
     display: block;
-    width: 97%;
+    width: 100%;
     line-height: 1.42857143;
     background-color: #fff;
     background-image: none;
@@ -270,7 +281,7 @@ table {
     color: #ff7b29;
   }
   
-.checkmore  a{
+.checkmore  a {
     text-decoration: none;
     color: rgba(0, 99, 70, 0.8);
 }
@@ -296,12 +307,12 @@ table {
 
 .threed:hover
 {
-        box-shadow:
-                1px 1px rgba(0, 99, 70, 0.8),
-                2px 2px rgba(0, 99, 70, 0.8),
-                3px 3px rgba(0, 99, 70, 0.8);
-        -webkit-transform: translateX(-3px);
-        transform: translateX(-3px);
+box-shadow:
+    1px 1px rgba(0, 99, 70, 0.8),
+    2px 2px rgba(0, 99, 70, 0.8),
+    3px 3px rgba(0, 99, 70, 0.8);
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
 }
 
 
@@ -350,13 +361,13 @@ table {
     font-size: 16px;
     margin: 0 auto;
     transition: 0.3s;
-  }
+}
   
-  .a_signup:hover {
+.a_signup:hover {
     color: rgb(236, 0, 140);
-  }
+}
 
-  .a_login {
+.a_login {
     color: black;
     border: none;
     /* color: black; */
@@ -365,11 +376,11 @@ table {
     font-size: 16px;
     margin: 0 auto;
     transition: 0.3s;
-  }
+}
 
-  .a_login:hover {
+.a_login:hover {
     color: rgb(236, 0, 140);
-  }
+}
 
 
 /*** GAME ***/
