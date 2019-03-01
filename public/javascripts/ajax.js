@@ -5,7 +5,7 @@ var savePoints = () => {
   var userId = document.querySelector('.userId').textContent;
 
   options = {
-    url: "http://localhost:4567/api/users",
+    url: "/api/users",
     data: {
       user_id: userId,
       points: playerScore
