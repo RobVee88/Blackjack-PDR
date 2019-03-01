@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'activerecord'
 gem 'sinatra'
 gem 'pg'
-gem 'activerecord'
 gem 'bcrypt'
-
-# gem 'sinatra/reloader'
-# gem 'pry'
+gem 'httparty'
+gem 'pry'
