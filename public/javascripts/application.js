@@ -13,7 +13,7 @@ var btnBet500 = document.querySelector('.btn-500');
 
 var pMessages = document.querySelector('.game-message');
 var pBetAmount = document.querySelector('.current-bet-amount');
-var pPlayerScore = document.querySelector('.player-score > p');
+var pPlayerScore = document.querySelector('.leaderboard-score');
 
 var pScores = document.querySelectorAll('.score');
 
