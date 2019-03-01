@@ -21,7 +21,7 @@
 - Created Group Git Repo.
 - Made decision that one person should be a GitLord.
 - Used Trello to delegate list of tasks need to be completed during group project - cards like - ToDo, Doing and done.
-- Created Tables using PSQL database and ActiveRecord.
+- Created Table using PSQL database and ActiveRecord.
 - Made frequent commit's.
 - Created a models for Users to logIn and save score.
 - Game reset by itself.
@@ -32,23 +32,23 @@
 
 ## User stories
 
-- User can logIn and check which player is leading in game.
-- User can play game with bets till he/she hits 21 and till the money runs off.
-- User can check How to play page.
-- Game reset in 3second automatically.
+- Users who are looking to play challenging BlackJack game can login and play.
+- Game has SignIn and LogIn functionality, with encrypted passwords & an authorization flow.
+- This Web app enable users to play blackJack game and updates latest score in leaderBoard and users can compete to be in top.
+- Users can check - How to play page and learn Game tricks and tips.
+- Game reset in 3second automatically after current game - display message about Dealer wins or player wins.
+- 
 
 ## Wireframes 
 
-- 
+- [wireframe](/img/wireframe.jpg)
 
-## Diagrams 
-
+## Diagrams - database schema
+- One module for Users
 
 ## Descriptions of any unsolved problems or major hurdles your team had to overcome
 
 - GameBoard was a major problem and we have tried our best to solve it.
-- Communication is a key to solve problem.
-- 
 
 ## Deployment 
 - Heroku
