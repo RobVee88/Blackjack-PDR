@@ -281,7 +281,7 @@ table {
     color: #ff7b29;
   }
   
-.checkmore  a{
+.checkmore  a {
     text-decoration: none;
     color: rgba(0, 99, 70, 0.8);
 }
@@ -307,12 +307,12 @@ table {
 
 .threed:hover
 {
-        box-shadow:
-                1px 1px rgba(0, 99, 70, 0.8),
-                2px 2px rgba(0, 99, 70, 0.8),
-                3px 3px rgba(0, 99, 70, 0.8);
-        -webkit-transform: translateX(-3px);
-        transform: translateX(-3px);
+box-shadow:
+    1px 1px rgba(0, 99, 70, 0.8),
+    2px 2px rgba(0, 99, 70, 0.8),
+    3px 3px rgba(0, 99, 70, 0.8);
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
 }
 
 
@@ -361,13 +361,13 @@ table {
     font-size: 16px;
     margin: 0 auto;
     transition: 0.3s;
-  }
+}
   
-  .a_signup:hover {
+.a_signup:hover {
     color: rgb(236, 0, 140);
-  }
+}
 
-  .a_login {
+.a_login {
     color: black;
     border: none;
     /* color: black; */
@@ -376,11 +376,11 @@ table {
     font-size: 16px;
     margin: 0 auto;
     transition: 0.3s;
-  }
+}
 
-  .a_login:hover {
+.a_login:hover {
     color: rgb(236, 0, 140);
-  }
+}
 
 
 /*** GAME ***/
