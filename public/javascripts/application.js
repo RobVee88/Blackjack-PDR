@@ -618,43 +618,63 @@ btnBetHandler = (event) => {
     } else if (buttonClass === 'btn-5') {
         // currentPile.bet += 5;
         // pBetAmount.textContent = currentPile.bet;
-        bet += 5;
-        pBetAmount.textContent = bet;
+        if(player.money >= 5) {
+            bet += 5;
+            pBetAmount.textContent = bet;
 
-        player.money -= 5;
-        pPlayerScore.textContent = player.money;
+            player.money -= 5;
+            pPlayerScore.textContent = player.money;
+        } else {
+            pMessages.textContent = "Insufficient funds...";
+        }
     } else if (buttonClass === 'btn-25') {
         // currentPile.bet += 25;
         // pBetAmount.textContent = currentPile.bet;
-        bet += 25;
-        pBetAmount.textContent = bet;
+        if(player.money >= 25) {
+            bet += 25;
+            pBetAmount.textContent = bet;
 
-        player.money -= 25;
-        pPlayerScore.textContent = player.money;
+            player.money -= 25;
+            pPlayerScore.textContent = player.money;
+        } else {
+            pMessages.textContent = "Insufficient funds...";
+        }
     } else if (buttonClass === 'btn-50') {
         // currentPile.bet += 50;
         // pBetAmount.textContent = currentPile.bet;
-        bet += 50;
-        pBetAmount.textContent = bet;
+        if(player.money >= 50) {
+            bet += 50;
+            pBetAmount.textContent = bet;
 
-        player.money -= 50;
-        pPlayerScore.textContent = player.money;
+            player.money -= 50;
+            pPlayerScore.textContent = player.money;
+        } else {
+            pMessages.textContent = "Insufficient funds...";
+        }
     } else if (buttonClass === 'btn-100') {
         // currentPile.bet += 100;
         // pBetAmount.textContent = currentPile.bet;
-        bet += 100;
-        pBetAmount.textContent = bet;
+        if(player.money >= 100) {
+            bet += 100;
+            pBetAmount.textContent = bet;
 
-        player.money -= 100;
-        pPlayerScore.textContent = player.money;
+            player.money -= 100;
+            pPlayerScore.textContent = player.money;
+        } else {
+            pMessages.textContent = "Insufficient funds...";
+        }
     } else if (buttonClass === 'btn-500') {
         // currentPile.bet += 500;
         // pBetAmount.textContent = currentPile.bet;
-        bet += 500;
-        pBetAmount.textContent = bet;
+        if (player.money >= 500) {
+            bet += 500;
+            pBetAmount.textContent = bet;
 
-        player.money -= 500;
-        pPlayerScore.textContent = player.money;
+            player.money -= 500;
+            pPlayerScore.textContent = player.money;
+        } else {
+            pMessages.textContent = "Insufficient funds...";
+        }
     }
     displayRightButtons();
 }
